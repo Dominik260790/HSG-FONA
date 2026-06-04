@@ -231,16 +231,14 @@ def extract_title(block: str) -> str:
 
 
 def fetch_handballnet_games() -> list[CalendarEvent]:
-    """Fetch club schedule from handball.net and parse games safely.
+    """Fetch paginated club schedule from handball.net and parse games safely.
 
-    Rules:
-    - Only known halls from HALLS are imported.
-    - Only "Spielbeginn" may define the event start.
-    - "letztes Update" must never define the event start.
-    - Duplicate HTML blocks are deduplicated by game number.
+    handball.net paginates the club schedule. One season URL can say
+    "443 Spiele gefunden", but page 1 only contains the first slice of games.
+    Therefore we request page 1, page 2, page 3 ... until no new games are found.
     """
 
-    url = (
+    base_url = (
         f"https://www.handball.net/vereine/{CLUB_ID}/spielplan"
         f"?dateFrom={DATE_FROM.isoformat()}&dateTo={DATE_TO.isoformat()}"
     )
@@ -250,82 +248,110 @@ def fetch_handballnet_games() -> list[CalendarEvent]:
         "Accept-Language": "de-DE,de;q=0.9,en;q=0.8",
     }
 
-    response = requests.get(url, headers=headers, timeout=30)
-    response.raise_for_status()
-
-    soup = BeautifulSoup(response.text, "html.parser")
-
-    text_blocks: list[str] = []
-
-    for tag in soup.find_all(["article", "section", "li", "tr", "div"]):
-        txt = clean_text(tag.get_text(" "))
-
-        if len(txt) < 80 or len(txt) > 2500:
-            continue
-
-        if "Spielbeginn" not in txt:
-            continue
-
-        if "Spielnummer" not in txt:
-            continue
-
-        if not any(hall_id in txt for hall_id in HALLS):
-            continue
-
-        text_blocks.append(txt)
-
     events: list[CalendarEvent] = []
     seen: set[str] = set()
 
-    for block in text_blocks:
-        # Remove update text before parsing anything else.
-        block_without_update = re.split(r"letztes\s+Update", block, flags=re.I)[0]
+    # The current handball.net page shows pagination up to 9 pages.
+    # We use 20 as a safe upper limit in case the season grows.
+    max_pages = 20
+    pages_without_new_events = 0
 
-        for hall_id, hall in HALLS.items():
-            if hall_id not in block_without_update:
+    for page in range(1, max_pages + 1):
+        if page == 1:
+            url = base_url
+        else:
+            url = f"{base_url}&page={page}"
+
+        print(f"Fetching handball.net page {page}: {url}")
+
+        response = requests.get(url, headers=headers, timeout=30)
+        response.raise_for_status()
+
+        soup = BeautifulSoup(response.text, "html.parser")
+
+        text_blocks: list[str] = []
+
+        for tag in soup.find_all(["article", "section", "li", "tr", "div"]):
+            txt = clean_text(tag.get_text(" "))
+
+            if len(txt) < 80 or len(txt) > 2500:
                 continue
 
-            start = parse_game_start(block_without_update)
-
-            # Skip games without clean start time.
-            # A hall occupancy calendar should not import games without time.
-            if not start:
+            if "Spielbeginn" not in txt:
                 continue
 
-            end = start + timedelta(minutes=DEFAULT_GAME_DURATION_MINUTES)
-
-            game_no = extract_game_number(block_without_update, hall_id, start)
-            event_id = f"handballnet-{game_no}"
-
-            if event_id in seen:
+            if "Spielnummer" not in txt:
                 continue
 
-            seen.add(event_id)
+            if not any(hall_id in txt for hall_id in HALLS):
+                continue
 
-            title = extract_title(block_without_update)
+            text_blocks.append(txt)
 
-            events.append(
-                CalendarEvent(
-                    id=event_id,
-                    title=title,
-                    start=to_iso(start),
-                    end=to_iso(end),
-                    hall_id=hall_id,
-                    hall=hall["name"],
-                    type="game",
-                    source="handball.net",
-                    location=hall["name"],
-                    description=(
-                        f"Quelle: handball.net | {CLUB_NAME} | "
-                        f"Hallennummer {hall_id} | Spielnummer {game_no}"
-                    ),
-                    url=url,
-                    color=hall.get("color", ""),
+        before_count = len(events)
+
+        for block in text_blocks:
+            # Remove update text before parsing anything else.
+            block_without_update = re.split(r"letztes\s+Update", block, flags=re.I)[0]
+
+            for hall_id, hall in HALLS.items():
+                if hall_id not in block_without_update:
+                    continue
+
+                start = parse_game_start(block_without_update)
+
+                # Skip games without clean start time.
+                # A hall occupancy calendar should not import games without time.
+                if not start:
+                    continue
+
+                end = start + timedelta(minutes=DEFAULT_GAME_DURATION_MINUTES)
+
+                game_no = extract_game_number(block_without_update, hall_id, start)
+                event_id = f"handballnet-{game_no}"
+
+                if event_id in seen:
+                    continue
+
+                seen.add(event_id)
+
+                title = extract_title(block_without_update)
+
+                events.append(
+                    CalendarEvent(
+                        id=event_id,
+                        title=title,
+                        start=to_iso(start),
+                        end=to_iso(end),
+                        hall_id=hall_id,
+                        hall=hall["name"],
+                        type="game",
+                        source="handball.net",
+                        location=hall["name"],
+                        description=(
+                            f"Quelle: handball.net | {CLUB_NAME} | "
+                            f"Hallennummer {hall_id} | Spielnummer {game_no}"
+                        ),
+                        url=url,
+                        color=hall.get("color", ""),
+                    )
                 )
-            )
+
+        new_events = len(events) - before_count
+        print(f"handball.net page {page}: {new_events} new hall games")
+
+        # If a page produces no new known-hall games, do not stop immediately:
+        # a page may contain only away games. Stop only after several empty pages.
+        if new_events == 0:
+            pages_without_new_events += 1
+        else:
+            pages_without_new_events = 0
+
+        if pages_without_new_events >= 4:
+            print("Stopping handball.net pagination after 4 pages without new hall games.")
+            break
 
     return sorted(events, key=lambda e: e.start)
-
 
 def title_for_training_event(event_type: str, team: str) -> str:
     event_type = (event_type or "training").strip().lower()

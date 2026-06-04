@@ -1,11 +1,15 @@
 name: Update hall calendar
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: "15 5 * * *"
-  workflow_dispatch:
   push:
-    branches: [ main ]
+    branches:
+      - main
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 permissions:
   contents: write
@@ -15,23 +19,37 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
         with:
           python-version: "3.12"
+
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          fi
+
       - name: Generate calendar files
         run: python scripts/import_calendar.py
-      - name: Commit generated files
-        uses: stefanzweifel/git-auto-commit-action@v5
+
+      - name: Commit generated calendar files
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "Update generated calendar files"
-          file_pattern: data/events.json calendars/*.ics
+          file_pattern: |
+            data/events.json
+            calendars/*.ics
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
+
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4

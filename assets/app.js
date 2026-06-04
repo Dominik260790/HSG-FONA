@@ -11,13 +11,51 @@ document.addEventListener('DOMContentLoaded', async function () {
 
   function uniqueBy(array, keyFn) {
     const map = new Map();
+
     array.forEach(item => {
       const key = keyFn(item);
+
       if (!map.has(key)) {
         map.set(key, item);
       }
     });
+
     return Array.from(map.values());
+  }
+
+  function typeLabel(type) {
+    const labels = {
+      game: 'Spiele',
+      training: 'Training',
+      blocked: 'Belegt',
+      football: 'Fußballerzeit',
+      optional: 'Optional'
+    };
+
+    return labels[type] || type;
+  }
+
+  function slugForHall(hallId, hallName) {
+    const known = {
+      '140702': 'alt-duvenstedt',
+      '140704': 'bsh',
+      '140703': 'realschule',
+      '140717': 'nuebbel',
+      'KRUMMENORT': 'krummenort'
+    };
+
+    if (known[hallId]) {
+      return known[hallId];
+    }
+
+    return hallName
+      .toLowerCase()
+      .replaceAll('ä', 'ae')
+      .replaceAll('ö', 'oe')
+      .replaceAll('ü', 'ue')
+      .replaceAll('ß', 'ss')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
   }
 
   const halls = uniqueBy(
@@ -40,47 +78,12 @@ document.addEventListener('DOMContentLoaded', async function () {
     t => t.id
   ).sort((a, b) => a.name.localeCompare(b.name, 'de'));
 
-  function typeLabel(type) {
-    const labels = {
-      game: 'Spiele',
-      training: 'Training',
-      blocked: 'Belegt',
-      football: 'Fußballerzeit',
-      optional: 'Optional'
-    };
-
-    return labels[type] || type;
-  }
-
-  function slugForHall(hallId, hallName) {
-    const known = {
-      '140702': 'alt-duvenstedt',
-      '140704': 'bsh',
-      '140703': 'realschule',
-      '140717': 'nuebbel',
-          };
-
-    if (known[hallId]) {
-      return known[hallId];
-    }
-
-    return hallName
-      .toLowerCase()
-      .replaceAll('ä', 'ae')
-      .replaceAll('ö', 'oe')
-      .replaceAll('ü', 'ue')
-      .replaceAll('ß', 'ss')
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-+|-+$/g, '');
-  }
-
   function buildControls() {
     controlsEl.innerHTML = '';
 
     const hallTitle = document.createElement('strong');
     hallTitle.textContent = 'Hallen:';
     controlsEl.appendChild(hallTitle);
-
     controlsEl.appendChild(document.createTextNode(' '));
 
     halls.forEach(hall => {
@@ -105,7 +108,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     const typeTitle = document.createElement('strong');
     typeTitle.textContent = 'Terminarten:';
     controlsEl.appendChild(typeTitle);
-
     controlsEl.appendChild(document.createTextNode(' '));
 
     types.forEach(type => {
@@ -130,7 +132,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     const icalTitle = document.createElement('strong');
     icalTitle.textContent = 'iCal:';
     controlsEl.appendChild(icalTitle);
-
     controlsEl.appendChild(document.createTextNode(' '));
 
     const totalLink = document.createElement('a');
@@ -173,14 +174,10 @@ document.addEventListener('DOMContentLoaded', async function () {
 
   buildControls();
 
-  const firstEvent = rawEvents.length > 0
-    ? rawEvents.map(e => e.start).sort()[0].slice(0, 10)
-    : undefined;
-
   const calendar = new FullCalendar.Calendar(calendarEl, {
     locale: 'de',
     initialView: 'timeGridWeek',
-    initialDate: firstEvent,
+    initialDate: new Date(),
     firstDay: 1,
     height: 'auto',
     nowIndicator: true,
@@ -199,7 +196,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         info.event.title,
         'Halle: ' + e.hall,
         'Typ: ' + e.type,
-        e.description ? 'Info: ' + e.description : ''
+        e.description ? 'Info: ' + e.description : '',
+        e.url ? 'Quelle: ' + e.url : ''
       ].filter(Boolean).join('\n'));
     }
   });

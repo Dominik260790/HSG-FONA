@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hallenkalender</title>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.20/index.global.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.20/locales/de.global.min.js"></script>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header>
+    <h1>Hallenkalender</h1>
+    <p>Spiele aus handball.net und Trainingszeiten aus CSV.</p>
+  </header>
+
+  <main>
+    <section class="controls">
+      <strong>Filter:</strong>
+      <label><input type="checkbox" class="hall-filter" value="140702" checked> Alt Duvenstedt</label>
+      <label><input type="checkbox" class="type-filter" value="game" checked> Spiele</label>
+      <label><input type="checkbox" class="type-filter" value="training" checked> Training</label>
+      <a href="calendars/gesamt.ics">Gesamt-iCal</a>
+      <a href="calendars/alt-duvenstedt.ics">Alt Duvenstedt-iCal</a>
+    </section>
+    <div id="calendar"></div>
+  </main>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>

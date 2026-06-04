@@ -126,7 +126,6 @@ def get_row_value(row: dict, *names: str, default: str = "") -> str:
 def parse_game_start(block: str) -> datetime | None:
     """Parse only the real handball.net game start.
 
-    Important:
     handball.net blocks can contain "letztes Update".
     This timestamp must never be used as event start.
     """
@@ -158,7 +157,6 @@ def parse_game_start(block: str) -> datetime | None:
 
     # Fallback:
     # Some HTML blocks may separate "Spielbeginn" from the date.
-    # Still only search in the part before "letztes Update".
     match = re.search(
         r"(\d{1,2})\.(\d{1,2})\.(\d{4}).{0,120}?(\d{1,2}):(\d{2})",
         text,
@@ -289,7 +287,11 @@ def extract_club_team_number_and_opponent(block: str) -> tuple[str, str]:
 
 
 def extract_team_class(block: str, team_number: str) -> str:
-    """Extract class/team label like wJC, mJC, 1. Frauen, 2. Männer."""
+    """Extract class/team label like wJC, mJC, 1. Frauen, 2. Männer.
+
+    If handball.net uses an unexpected naming format, avoid returning only "Team".
+    Instead, derive a usable fallback from the competition text.
+    """
 
     text = strip_schedule_metadata(block)
 
@@ -301,22 +303,30 @@ def extract_team_class(block: str, team_number: str) -> str:
         prefix = text
 
     prefix = clean_text(prefix)
+    lower = prefix.lower()
 
-    # Prefer explicit handball.net short codes such as wJC-RL-2, mJB-RL-1, mJA-RL-2.
-    code_match = re.search(r"\b([wm]J[A-E](?:-[A-Za-z0-9]+)*)\b", prefix, flags=re.I)
+    def with_number(label: str) -> str:
+        if team_number:
+            return f"{label} {team_number}"
+        return label
+
+    # Explicit handball.net short codes:
+    # wJC-RL-2, mJB-RL-1, mJA-RL-2, wJE, mJD, etc.
+    code_match = re.search(r"\b([wm]J?[A-E](?:-[A-Za-z0-9]+)*)\b", prefix, flags=re.I)
     if code_match:
         team_class = code_match.group(1)
 
-        # Normalize first letter to lowercase, J remains uppercase.
-        team_class = team_class[0].lower() + team_class[1:]
+        # Normalize: wjc -> wJC, mja -> mJA
+        m = re.match(r"([wm])J?([A-E])(.*)", team_class, flags=re.I)
+        if m:
+            gender = m.group(1).lower()
+            age = m.group(2).upper()
+            rest = m.group(3)
+            team_class = f"{gender}J{age}{rest}"
 
-        if team_number:
-            return f"{team_class} {team_number}"
+        return with_number(team_class)
 
-        return team_class
-
-    lower = prefix.lower()
-
+    # Broad youth patterns.
     youth_patterns = [
         (r"weibliche\s+jugend\s+a", "wJA"),
         (r"weibliche\s+jugend\s+b", "wJB"),
@@ -333,36 +343,83 @@ def extract_team_class(block: str, team_number: str) -> str:
         (r"maennliche\s+jugend\s+d", "mJD"),
         (r"männliche\s+jugend\s+e", "mJE"),
         (r"maennliche\s+jugend\s+e", "mJE"),
+
+        (r"weibliche\s+a-jugend", "wJA"),
+        (r"weibliche\s+b-jugend", "wJB"),
+        (r"weibliche\s+c-jugend", "wJC"),
         (r"weibliche\s+d-jugend", "wJD"),
         (r"weibliche\s+e-jugend", "wJE"),
+        (r"männliche\s+a-jugend", "mJA"),
+        (r"maennliche\s+a-jugend", "mJA"),
+        (r"männliche\s+b-jugend", "mJB"),
+        (r"maennliche\s+b-jugend", "mJB"),
+        (r"männliche\s+c-jugend", "mJC"),
+        (r"maennliche\s+c-jugend", "mJC"),
         (r"männliche\s+d-jugend", "mJD"),
         (r"maennliche\s+d-jugend", "mJD"),
         (r"männliche\s+e-jugend", "mJE"),
         (r"maennliche\s+e-jugend", "mJE"),
+
+        (r"weiblich\s+a", "wJA"),
+        (r"weiblich\s+b", "wJB"),
+        (r"weiblich\s+c", "wJC"),
+        (r"weiblich\s+d", "wJD"),
+        (r"weiblich\s+e", "wJE"),
+        (r"männlich\s+a", "mJA"),
+        (r"maennlich\s+a", "mJA"),
+        (r"männlich\s+b", "mJB"),
+        (r"maennlich\s+b", "mJB"),
+        (r"männlich\s+c", "mJC"),
+        (r"maennlich\s+c", "mJC"),
+        (r"männlich\s+d", "mJD"),
+        (r"maennlich\s+d", "mJD"),
+        (r"männlich\s+e", "mJE"),
+        (r"maennlich\s+e", "mJE"),
+
         (r"gemischt\s+f-jugend", "F-Jugend"),
+        (r"f-jugend", "F-Jugend"),
     ]
 
     for pattern, label in youth_patterns:
         if re.search(pattern, lower):
-            if team_number:
-                return f"{label} {team_number}"
-            return label
+            return with_number(label)
 
-    if "frauen" in lower:
+    # Adult teams.
+    if "frauen" in lower or "damen" in lower:
         number = team_number or "1"
         return f"{number}. Frauen"
 
-    if "männer" in lower or "maenner" in lower:
+    if "männer" in lower or "maenner" in lower or "herren" in lower:
         number = team_number or "1"
         return f"{number}. Männer"
 
-    if "minis" in lower:
-        return "Minis"
+    # Mini / Maxi.
+    if "minis" in lower or "mini" in lower:
+        return with_number("Minis")
 
-    if "maxis" in lower:
-        return "Maxis"
+    if "maxis" in lower or "maxi" in lower:
+        return with_number("Maxis")
 
-    return "Team"
+    # Last fallback: try to keep a useful part of the competition string.
+    # This prevents titles like "Team · Gegner".
+    fallback = prefix
+
+    # Remove broad organizational labels.
+    fallback = re.sub(r"\bRegion\s+(Jugend|Erwachsene|Mitte|Nord|Süd|Sued)\b", " ", fallback, flags=re.I)
+    fallback = re.sub(r"\bSchleswig-Holstein\b", " ", fallback, flags=re.I)
+    fallback = re.sub(r"\bKreisliga\b|\bKreisoberliga\b|\bOberliga\b|\bRegionsliga\b|\bPokal\b", " ", fallback, flags=re.I)
+    fallback = re.sub(r"\bHinrunde\b|\bRückrunde\b|\bRueckrunde\b|\bStaffel\b", " ", fallback, flags=re.I)
+    fallback = re.sub(r"\bRD\b|\bNMS\b|\bSE\b", " ", fallback, flags=re.I)
+    fallback = re.sub(r"\s*-\s*", " ", fallback)
+    fallback = clean_text(fallback)
+
+    if fallback:
+        return with_number(fallback[:30])
+
+    if team_number:
+        return f"{team_number}. Mannschaft"
+
+    return "Mannschaft"
 
 
 def extract_game_title(block: str, start: datetime) -> str:

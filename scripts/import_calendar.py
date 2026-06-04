@@ -12,6 +12,11 @@ import requests
 from bs4 import BeautifulSoup
 from dateutil.rrule import rrule, WEEKLY
 
+try:
+    from openpyxl import load_workbook
+except ImportError:
+    load_workbook = None
+
 from config import (
     CLUB_ID,
     CLUB_NAME,
@@ -22,6 +27,13 @@ from config import (
     DEFAULT_GAME_DURATION_MINUTES,
     TRAINING_CSV,
 )
+
+try:
+    from config import WEEKEND_XLSX, WEEKEND_HALL_MAP
+except ImportError:
+    WEEKEND_XLSX = ""
+    WEEKEND_HALL_MAP = {}
+
 
 ROOT = Path(__file__).resolve().parents[1]
 BERLIN = ZoneInfo(TIMEZONE)
@@ -67,6 +79,10 @@ GERMAN_MONTHS = {
     "dez": 12,
 }
 
+WEEKEND_DEFAULT_START = time(8, 0)
+WEEKEND_DEFAULT_END = time(22, 0)
+WEEKEND_DEFAULT_DURATION_MINUTES = 90
+
 
 @dataclass
 class CalendarEvent:
@@ -99,6 +115,58 @@ def parse_time(value: str) -> time:
     return time(int(h), int(m))
 
 
+def parse_excel_time(value) -> time | None:
+    if value is None:
+        return None
+
+    if isinstance(value, time):
+        return value.replace(tzinfo=None)
+
+    if isinstance(value, datetime):
+        return value.time().replace(tzinfo=None)
+
+    if isinstance(value, (int, float)):
+        # Excel stores times as fractions of a day.
+        if 0 <= value < 1:
+            total_minutes = round(value * 24 * 60)
+            hh = total_minutes // 60
+            mm = total_minutes % 60
+            return time(hh, mm)
+
+    if isinstance(value, str):
+        value = clean_text(value)
+        match = re.match(r"^(\d{1,2})[:.](\d{2})$", value)
+        if match:
+            hh = int(match.group(1))
+            mm = int(match.group(2))
+            return time(hh, mm)
+
+    return None
+
+
+def is_meaningful_cell(value) -> bool:
+    if value is None:
+        return False
+
+    if isinstance(value, str):
+        return clean_text(value) != ""
+
+    return True
+
+
+def cell_text(value) -> str:
+    if value is None:
+        return ""
+
+    if isinstance(value, datetime):
+        return value.date().isoformat()
+
+    if isinstance(value, time):
+        return value.strftime("%H:%M")
+
+    return clean_text(str(value))
+
+
 def to_iso(dt: datetime) -> str:
     return dt.isoformat()
 
@@ -124,23 +192,12 @@ def get_row_value(row: dict, *names: str, default: str = "") -> str:
 
 
 def parse_game_start(block: str) -> datetime | None:
-    """Parse only the real handball.net game start.
-
-    handball.net blocks can contain "letztes Update".
-    This timestamp must never be used as event start.
-    """
-
     text = clean_text(block)
-
-    # Ignore everything after "letztes Update".
     text = re.split(r"letztes\s+Update", text, flags=re.I)[0]
 
-    # A real game should contain "Spielbeginn".
     if not re.search(r"Spielbeginn", text, flags=re.I):
         return None
 
-    # Preferred pattern:
-    # Spielbeginn Samstag, 13.09.2025 - 13:00 Uhr
     match = re.search(
         r"Spielbeginn\s+"
         r"(?:Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag|Sonntag|Mo\.?|Di\.?|Mi\.?|Do\.?|Fr\.?|Sa\.?|So\.?)?"
@@ -155,8 +212,6 @@ def parse_game_start(block: str) -> datetime | None:
         d, m, y, hh, mm = map(int, match.groups())
         return datetime(y, m, d, hh, mm, tzinfo=BERLIN)
 
-    # Fallback:
-    # Some HTML blocks may separate "Spielbeginn" from the date.
     match = re.search(
         r"(\d{1,2})\.(\d{1,2})\.(\d{4}).{0,120}?(\d{1,2}):(\d{2})",
         text,
@@ -166,8 +221,6 @@ def parse_game_start(block: str) -> datetime | None:
         d, m, y, hh, mm = map(int, match.groups())
         return datetime(y, m, d, hh, mm, tzinfo=BERLIN)
 
-    # Month name fallback:
-    # 25. April 2026 - 13:00 Uhr
     match = re.search(
         r"(\d{1,2})\.\s*([A-Za-zäÄöÖüÜ]+)\s+(\d{4}).{0,120}?(\d{1,2}):(\d{2})",
         text,
@@ -196,8 +249,6 @@ def extract_game_number(block: str, hall_id: str, start: datetime) -> str:
 
 
 def strip_schedule_metadata(text: str) -> str:
-    """Remove handball.net metadata from a text block."""
-
     text = clean_text(text)
 
     text = re.split(
@@ -237,62 +288,39 @@ def clean_opponent(opponent: str) -> str:
 
 
 def extract_club_team_number_and_opponent(block: str) -> tuple[str, str]:
-    """Return club team number and opponent.
-
-    Examples:
-    HSG Fockbek/Nübbel/Alt Duvenstedt 26 : 27 HFF Munkbrarup
-      -> "", "HFF Munkbrarup"
-
-    HSG Fockbek/Nübbel/Alt Duvenstedt 2 23 : 19 SG Oeversee/Jarplund-Weding
-      -> "2", "SG Oeversee/Jarplund-Weding"
-    """
-
     text = strip_schedule_metadata(block)
-
     club_match = re.search(re.escape(CLUB_NAME), text, flags=re.I)
 
     if not club_match:
         return "", ""
 
     after_club = text[club_match.end():].strip()
-
     team_number = ""
 
-    # Case: "2 23 : 19 Opponent"
     match = re.match(r"^(\d+)\s+(\d{1,3})\s*:\s*(\d{1,3})\s+(.+)$", after_club)
     if match:
         team_number = match.group(1)
         opponent = match.group(4)
         return team_number, clean_opponent(opponent)
 
-    # Case: "26 : 27 Opponent"
     match = re.match(r"^(\d{1,3})\s*:\s*(\d{1,3})\s+(.+)$", after_club)
     if match:
         opponent = match.group(3)
         return team_number, clean_opponent(opponent)
 
-    # Case: "2 Opponent" for future games without result.
     match = re.match(r"^(\d+)\s+(.+)$", after_club)
     if match:
         possible_number = match.group(1)
         rest = match.group(2).strip()
 
-        # Team numbers are normally small.
         if possible_number in {"2", "3", "4", "5"}:
             team_number = possible_number
             return team_number, clean_opponent(rest)
 
-    # Case: "Opponent"
     return team_number, clean_opponent(after_club)
 
 
 def extract_team_class(block: str, team_number: str) -> str:
-    """Extract class/team label like wJC, mJC, 1. Frauen, 2. Männer.
-
-    If handball.net uses an unexpected naming format, avoid returning only "Team".
-    Instead, derive a usable fallback from the competition text.
-    """
-
     text = strip_schedule_metadata(block)
 
     club_match = re.search(re.escape(CLUB_NAME), text, flags=re.I)
@@ -310,13 +338,10 @@ def extract_team_class(block: str, team_number: str) -> str:
             return f"{label} {team_number}"
         return label
 
-    # Explicit handball.net short codes:
-    # wJC-RL-2, mJB-RL-1, mJA-RL-2, wJE, mJD, etc.
     code_match = re.search(r"\b([wm]J?[A-E](?:-[A-Za-z0-9]+)*)\b", prefix, flags=re.I)
     if code_match:
         team_class = code_match.group(1)
 
-        # Normalize: wjc -> wJC, mja -> mJA
         m = re.match(r"([wm])J?([A-E])(.*)", team_class, flags=re.I)
         if m:
             gender = m.group(1).lower()
@@ -326,7 +351,6 @@ def extract_team_class(block: str, team_number: str) -> str:
 
         return with_number(team_class)
 
-    # Broad youth patterns.
     youth_patterns = [
         (r"weibliche\s+jugend\s+a", "wJA"),
         (r"weibliche\s+jugend\s+b", "wJB"),
@@ -343,7 +367,6 @@ def extract_team_class(block: str, team_number: str) -> str:
         (r"maennliche\s+jugend\s+d", "mJD"),
         (r"männliche\s+jugend\s+e", "mJE"),
         (r"maennliche\s+jugend\s+e", "mJE"),
-
         (r"weibliche\s+a-jugend", "wJA"),
         (r"weibliche\s+b-jugend", "wJB"),
         (r"weibliche\s+c-jugend", "wJC"),
@@ -359,23 +382,6 @@ def extract_team_class(block: str, team_number: str) -> str:
         (r"maennliche\s+d-jugend", "mJD"),
         (r"männliche\s+e-jugend", "mJE"),
         (r"maennliche\s+e-jugend", "mJE"),
-
-        (r"weiblich\s+a", "wJA"),
-        (r"weiblich\s+b", "wJB"),
-        (r"weiblich\s+c", "wJC"),
-        (r"weiblich\s+d", "wJD"),
-        (r"weiblich\s+e", "wJE"),
-        (r"männlich\s+a", "mJA"),
-        (r"maennlich\s+a", "mJA"),
-        (r"männlich\s+b", "mJB"),
-        (r"maennlich\s+b", "mJB"),
-        (r"männlich\s+c", "mJC"),
-        (r"maennlich\s+c", "mJC"),
-        (r"männlich\s+d", "mJD"),
-        (r"maennlich\s+d", "mJD"),
-        (r"männlich\s+e", "mJE"),
-        (r"maennlich\s+e", "mJE"),
-
         (r"gemischt\s+f-jugend", "F-Jugend"),
         (r"f-jugend", "F-Jugend"),
     ]
@@ -384,7 +390,6 @@ def extract_team_class(block: str, team_number: str) -> str:
         if re.search(pattern, lower):
             return with_number(label)
 
-    # Adult teams.
     if "frauen" in lower or "damen" in lower:
         number = team_number or "1"
         return f"{number}. Frauen"
@@ -393,18 +398,14 @@ def extract_team_class(block: str, team_number: str) -> str:
         number = team_number or "1"
         return f"{number}. Männer"
 
-    # Mini / Maxi.
     if "minis" in lower or "mini" in lower:
         return with_number("Minis")
 
     if "maxis" in lower or "maxi" in lower:
         return with_number("Maxis")
 
-    # Last fallback: try to keep a useful part of the competition string.
-    # This prevents titles like "Team · Gegner".
     fallback = prefix
 
-    # Remove broad organizational labels.
     fallback = re.sub(r"\bRegion\s+(Jugend|Erwachsene|Mitte|Nord|Süd|Sued)\b", " ", fallback, flags=re.I)
     fallback = re.sub(r"\bSchleswig-Holstein\b", " ", fallback, flags=re.I)
     fallback = re.sub(r"\bKreisliga\b|\bKreisoberliga\b|\bOberliga\b|\bRegionsliga\b|\bPokal\b", " ", fallback, flags=re.I)
@@ -423,12 +424,6 @@ def extract_team_class(block: str, team_number: str) -> str:
 
 
 def extract_game_title(block: str, start: datetime) -> str:
-    """Build title as: class/team · opponent.
-
-    The event time is already displayed by FullCalendar,
-    so the kickoff time is intentionally not included in the title.
-    """
-
     team_number, opponent = extract_club_team_number_and_opponent(block)
     team_class = extract_team_class(block, team_number)
 
@@ -441,16 +436,6 @@ def extract_game_title(block: str, start: datetime) -> str:
 
 
 def fetch_handballnet_games() -> list[CalendarEvent]:
-    """Fetch paginated club schedule from handball.net and parse games safely.
-
-    Rules:
-    - All pagination pages are requested.
-    - Only known halls from HALLS are imported.
-    - Only "Spielbeginn" may define the event start.
-    - "letztes Update" must never define the event start.
-    - Duplicate HTML blocks are deduplicated by game number.
-    """
-
     base_url = (
         f"https://www.handball.net/vereine/{CLUB_ID}/spielplan"
         f"?dateFrom={DATE_FROM.isoformat()}&dateTo={DATE_TO.isoformat()}"
@@ -510,8 +495,6 @@ def fetch_handballnet_games() -> list[CalendarEvent]:
 
                 start = parse_game_start(block_without_update)
 
-                # Skip games without clean start time.
-                # A hall occupancy calendar should not import games without time.
                 if not start:
                     continue
 
@@ -550,8 +533,6 @@ def fetch_handballnet_games() -> list[CalendarEvent]:
         new_events = len(events) - before_count
         print(f"handball.net page {page}: {new_events} new hall games")
 
-        # Do not stop immediately after one empty page:
-        # a page can contain only away games.
         if new_events == 0:
             pages_without_new_events += 1
         else:
@@ -665,6 +646,319 @@ def load_training_events() -> list[CalendarEvent]:
     return events
 
 
+def find_weekend_hall_columns(ws) -> list[dict]:
+    hall_columns: list[dict] = []
+
+    for row in range(1, min(ws.max_row, 5) + 1):
+        for col in range(1, ws.max_column + 1):
+            value = cell_text(ws.cell(row, col).value)
+
+            if not value:
+                continue
+
+            for excel_hall_name, hall_id in WEEKEND_HALL_MAP.items():
+                if clean_text(value).lower() == clean_text(excel_hall_name).lower():
+                    if hall_id not in HALLS:
+                        print(f"WARNING: weekend hall maps to unknown hall_id skipped: {excel_hall_name} -> {hall_id}")
+                        continue
+
+                    # In the template:
+                    # BSH text col = 4, time col = 2
+                    # Duvenstedt text col = 7, time col = 5
+                    # Nübbel text col = 10, time col = 8
+                    # Bergschule text col = 13, time col = 11
+                    hall_columns.append(
+                        {
+                            "excel_name": excel_hall_name,
+                            "hall_id": hall_id,
+                            "text_col": col,
+                            "time_col": max(1, col - 2),
+                        }
+                    )
+
+    unique = {}
+    for item in hall_columns:
+        unique[(item["hall_id"], item["text_col"])] = item
+
+    return list(unique.values())
+
+
+def is_weekday_label(value) -> bool:
+    if not isinstance(value, str):
+        return False
+
+    value = clean_text(value).lower()
+
+    return value in {
+        "montag",
+        "dienstag",
+        "mittwoch",
+        "donnerstag",
+        "freitag",
+        "samstag",
+        "sonntag",
+    }
+
+
+def find_weekend_date_sections(ws) -> list[dict]:
+    date_rows: list[tuple[int, date]] = []
+
+    for row in range(1, ws.max_row + 1):
+        value = ws.cell(row, 1).value
+
+        if isinstance(value, datetime):
+            date_rows.append((row, value.date()))
+
+        elif isinstance(value, date):
+            date_rows.append((row, value))
+
+    sections: list[dict] = []
+
+    for index, (date_row, day_date) in enumerate(date_rows):
+        if date_row > 1 and is_weekday_label(ws.cell(date_row - 1, 1).value):
+            start_row = date_row - 1
+        else:
+            start_row = date_row
+
+        if index + 1 < len(date_rows):
+            next_date_row = date_rows[index + 1][0]
+            if next_date_row > 1 and is_weekday_label(ws.cell(next_date_row - 1, 1).value):
+                end_row = next_date_row - 2
+            else:
+                end_row = next_date_row - 1
+        else:
+            end_row = ws.max_row
+
+        sections.append(
+            {
+                "date": day_date,
+                "start_row": start_row,
+                "date_row": date_row,
+                "end_row": end_row,
+            }
+        )
+
+    return sections
+
+
+def collect_weekend_text_lines(ws, rows: list[int], time_col: int, text_col: int) -> list[str]:
+    lines: list[str] = []
+
+    for row in rows:
+        values = [
+            ws.cell(row, text_col).value,
+        ]
+
+        # Notes sometimes appear inside the time column, e.g. "Feiertag Vergabe nur ...".
+        time_value = ws.cell(row, time_col).value
+        if parse_excel_time(time_value) is None:
+            values.append(time_value)
+
+        for value in values:
+            if not is_meaningful_cell(value):
+                continue
+
+            if isinstance(value, (datetime, date, time)):
+                continue
+
+            text = cell_text(value)
+
+            if not text:
+                continue
+
+            if is_weekday_label(text):
+                continue
+
+            if text not in lines:
+                lines.append(text)
+
+    return lines
+
+
+def is_full_day_weekend_event(title: str) -> bool:
+    lower = title.lower()
+
+    keywords = [
+        "ferien",
+        "gesperrt",
+        "feiertag",
+        "osterwochenende",
+        "pfingsten",
+        "nutzung nur auf antrag",
+        "vergab",
+        "genehmigung",
+        "zeiten folgen",
+    ]
+
+    return any(keyword in lower for keyword in keywords)
+
+
+def make_weekend_title(lines: list[str]) -> str:
+    title = " / ".join(clean_text(line) for line in lines if clean_text(line))
+    title = clean_text(title)
+
+    if not title:
+        return "Wochenendbelegung"
+
+    return title[:160]
+
+
+def load_weekend_excel_events() -> list[CalendarEvent]:
+    if not WEEKEND_XLSX:
+        print("weekend excel: disabled, WEEKEND_XLSX not configured")
+        return []
+
+    if not WEEKEND_HALL_MAP:
+        print("weekend excel: disabled, WEEKEND_HALL_MAP not configured")
+        return []
+
+    if load_workbook is None:
+        print("WARNING: openpyxl not installed, weekend excel skipped")
+        return []
+
+    path = ROOT / WEEKEND_XLSX
+
+    if not path.exists():
+        print(f"weekend excel: file not found, skipped: {path}")
+        return []
+
+    workbook = load_workbook(path, data_only=True)
+    events: list[CalendarEvent] = []
+    seen: set[str] = set()
+
+    for ws in workbook.worksheets:
+        hall_columns = find_weekend_hall_columns(ws)
+
+        if not hall_columns:
+            continue
+
+        date_sections = find_weekend_date_sections(ws)
+
+        for section in date_sections:
+            day_date = section["date"]
+            start_row = section["start_row"]
+            end_row = section["end_row"]
+
+            for hall_config in hall_columns:
+                hall_id = hall_config["hall_id"]
+                hall = HALLS[hall_id]
+                time_col = hall_config["time_col"]
+                text_col = hall_config["text_col"]
+
+                rows = list(range(start_row, end_row + 1))
+
+                time_rows = []
+                for row in rows:
+                    parsed_time = parse_excel_time(ws.cell(row, time_col).value)
+                    if parsed_time is not None:
+                        time_rows.append((row, parsed_time))
+
+                if time_rows:
+                    for idx, (time_row, start_t) in enumerate(time_rows):
+                        if idx == 0:
+                            chunk_start = start_row
+                        else:
+                            chunk_start = time_row
+
+                        if idx + 1 < len(time_rows):
+                            chunk_end = time_rows[idx + 1][0] - 1
+                            end_t = time_rows[idx + 1][1]
+                        else:
+                            chunk_end = end_row
+                            end_dt_tmp = datetime.combine(day_date, start_t) + timedelta(minutes=WEEKEND_DEFAULT_DURATION_MINUTES)
+                            end_t = end_dt_tmp.time()
+
+                        chunk_rows = list(range(chunk_start, chunk_end + 1))
+                        lines = collect_weekend_text_lines(ws, chunk_rows, time_col, text_col)
+
+                        if not lines:
+                            continue
+
+                        title = make_weekend_title(lines)
+
+                        start = datetime.combine(day_date, start_t, tzinfo=BERLIN)
+                        end = datetime.combine(day_date, end_t, tzinfo=BERLIN)
+
+                        if end <= start:
+                            end = start + timedelta(minutes=WEEKEND_DEFAULT_DURATION_MINUTES)
+
+                        event_id = f"weekend-{hall_id}-{safe_id(ws.title)}-{day_date.isoformat()}-{start:%H%M}-{safe_id(title)}"
+
+                        if event_id in seen:
+                            continue
+
+                        seen.add(event_id)
+
+                        events.append(
+                            CalendarEvent(
+                                id=event_id,
+                                title=title,
+                                start=to_iso(start),
+                                end=to_iso(end),
+                                hall_id=hall_id,
+                                hall=hall["name"],
+                                type="weekend",
+                                source="weekend_belegung.xlsx",
+                                location=hall["name"],
+                                description=(
+                                    f"Quelle: {WEEKEND_XLSX} | Blatt: {ws.title} | "
+                                    f"Excel-Halle: {hall_config['excel_name']}"
+                                ),
+                                color=hall.get("color", ""),
+                            )
+                        )
+
+                else:
+                    lines = collect_weekend_text_lines(ws, rows, time_col, text_col)
+
+                    if not lines:
+                        continue
+
+                    title = make_weekend_title(lines)
+
+                    if is_full_day_weekend_event(title):
+                        start_t = WEEKEND_DEFAULT_START
+                        end_t = WEEKEND_DEFAULT_END
+                    else:
+                        start_t = WEEKEND_DEFAULT_START
+                        end_t = (
+                            datetime.combine(day_date, start_t) + timedelta(minutes=WEEKEND_DEFAULT_DURATION_MINUTES)
+                        ).time()
+
+                    start = datetime.combine(day_date, start_t, tzinfo=BERLIN)
+                    end = datetime.combine(day_date, end_t, tzinfo=BERLIN)
+
+                    event_id = f"weekend-{hall_id}-{safe_id(ws.title)}-{day_date.isoformat()}-{safe_id(title)}"
+
+                    if event_id in seen:
+                        continue
+
+                    seen.add(event_id)
+
+                    events.append(
+                        CalendarEvent(
+                            id=event_id,
+                            title=title,
+                            start=to_iso(start),
+                            end=to_iso(end),
+                            hall_id=hall_id,
+                            hall=hall["name"],
+                            type="weekend",
+                            source="weekend_belegung.xlsx",
+                            location=hall["name"],
+                            description=(
+                                f"Quelle: {WEEKEND_XLSX} | Blatt: {ws.title} | "
+                                f"Excel-Halle: {hall_config['excel_name']} | "
+                                f"keine konkrete Uhrzeit in Excel gefunden"
+                            ),
+                            color=hall.get("color", ""),
+                        )
+                    )
+
+    print(f"weekend excel sheets parsed: {len(workbook.worksheets)}")
+    return sorted(events, key=lambda e: e.start)
+
+
 def ics_escape(value: str) -> str:
     value = html.unescape(str(value or ""))
     return (
@@ -734,7 +1028,10 @@ def main() -> None:
     trainings = load_training_events()
     print(f"training events: {len(trainings)}")
 
-    events = sorted(games + trainings, key=lambda e: e.start)
+    weekend_events = load_weekend_excel_events()
+    print(f"weekend excel events: {len(weekend_events)}")
+
+    events = sorted(games + trainings + weekend_events, key=lambda e: e.start)
 
     (ROOT / "data" / "events.json").write_text(
         json.dumps([asdict(e) for e in events], ensure_ascii=False, indent=2),

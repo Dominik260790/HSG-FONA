@@ -38,15 +38,7 @@ jobs:
       - name: Generate calendar files
         run: python scripts/import_calendar.py
 
-      - name: Commit generated calendar files
-        uses: stefanzweifel/git-auto-commit-action@v7
-        with:
-          commit_message: "Update generated calendar files"
-          file_pattern: |
-            data/events.json
-            calendars/*.ics
-
-      - name: Upload Pages artifact
+     - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: .

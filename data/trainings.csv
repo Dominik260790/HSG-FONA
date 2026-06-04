@@ -1,3 +1,4 @@
 type,team,hall_id,weekday,start_time,end_time,date_from,date_to,notes
 training,Herren 1,140702,MO,20:00,22:00,2025-09-01,2026-06-30,Regeltraining
 training,Damen 1,140702,WE,19:00,21:00,2025-09-01,2026-06-30,Regeltraining
+training,Damen 1,140704,WE,19:00,21:00,2025-09-01,2026-06-30,Regeltraining

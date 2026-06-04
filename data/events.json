@@ -1,5 +1,33 @@
 [
   {
+    "id": "weekend-140704-kw37-2025-09-12-tischtennis-landesmeisterschaften-aufbau",
+    "title": "Tischtennis / Landesmeisterschaften / Aufbau",
+    "start": "2025-09-12T08:00:00+02:00",
+    "end": "2025-09-12T09:30:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "weekend",
+    "source": "weekend_belegung.xlsx",
+    "location": "BSH Fockbek",
+    "description": "Quelle: data/weekend_belegung.xlsx | Blatt: KW37 | Excel-Halle: Bgm.-Schadwinkel-Halle | keine konkrete Uhrzeit in Excel gefunden",
+    "url": "",
+    "color": "#16a34a"
+  },
+  {
+    "id": "weekend-140704-kw37-2025-09-13-tischtennis-landesmeisterschaften-zeiten-folgen",
+    "title": "Tischtennis / Landesmeisterschaften / Zeiten folgen",
+    "start": "2025-09-13T08:00:00+02:00",
+    "end": "2025-09-13T22:00:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "weekend",
+    "source": "weekend_belegung.xlsx",
+    "location": "BSH Fockbek",
+    "description": "Quelle: data/weekend_belegung.xlsx | Blatt: KW37 | Excel-Halle: Bgm.-Schadwinkel-Halle | keine konkrete Uhrzeit in Excel gefunden",
+    "url": "",
+    "color": "#16a34a"
+  },
+  {
     "id": "handballnet-14726004",
     "title": "wJC-RL-2 · HFF Munkbrarup",
     "start": "2025-09-13T13:00:00+02:00",
@@ -40,6 +68,20 @@
     "description": "Quelle: handball.net | HSG Fockbek/Nübbel/Alt Duvenstedt | Hallennummer 140702 | Spielnummer 14005300",
     "url": "https://www.handball.net/vereine/handball4all.schleswig-holstein.6251/spielplan?dateFrom=2025-07-01&dateTo=2026-06-30",
     "color": "#2563eb"
+  },
+  {
+    "id": "weekend-140704-kw37-2025-09-14-tischtennis-landesmeisterschaften-zeiten-folgen",
+    "title": "Tischtennis / Landesmeisterschaften / Zeiten folgen",
+    "start": "2025-09-14T08:00:00+02:00",
+    "end": "2025-09-14T22:00:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "weekend",
+    "source": "weekend_belegung.xlsx",
+    "location": "BSH Fockbek",
+    "description": "Quelle: data/weekend_belegung.xlsx | Blatt: KW37 | Excel-Halle: Bgm.-Schadwinkel-Halle | keine konkrete Uhrzeit in Excel gefunden",
+    "url": "",
+    "color": "#16a34a"
   },
   {
     "id": "handballnet-14548003",
@@ -406,6 +448,20 @@
     "color": "#dc2626"
   },
   {
+    "id": "weekend-140704-kw40-2025-10-03-feiertag-vergabe-nur-mit-genehmigung-gemeinde",
+    "title": "Feiertag Vergabe nur mit Genehmigung Gemeinde",
+    "start": "2025-10-03T08:00:00+02:00",
+    "end": "2025-10-03T22:00:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "weekend",
+    "source": "weekend_belegung.xlsx",
+    "location": "BSH Fockbek",
+    "description": "Quelle: data/weekend_belegung.xlsx | Blatt: KW40 | Excel-Halle: Bgm.-Schadwinkel-Halle | keine konkrete Uhrzeit in Excel gefunden",
+    "url": "",
+    "color": "#16a34a"
+  },
+  {
     "id": "handballnet-14547002",
     "title": "mJD 2 · TSV Vineta Audorf",
     "start": "2025-10-05T10:00:00+02:00",
@@ -574,6 +630,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "weekend-140704-kw44-2025-10-31-reformationstag-vergabe-nur-mit-genehmigung-gemeide",
+    "title": "Reformationstag Vergabe nur mit Genehmigung Gemeide",
+    "start": "2025-10-31T08:00:00+01:00",
+    "end": "2025-10-31T22:00:00+01:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "weekend",
+    "source": "weekend_belegung.xlsx",
+    "location": "BSH Fockbek",
+    "description": "Quelle: data/weekend_belegung.xlsx | Blatt: KW44 | Excel-Halle: Bgm.-Schadwinkel-Halle | keine konkrete Uhrzeit in Excel gefunden",
+    "url": "",
+    "color": "#16a34a"
+  },
+  {
     "id": "handballnet-14726031",
     "title": "wJC-RL-2 · HSG Schülp/Westerrönfeld/Rendsburg 2",
     "start": "2025-11-08T15:00:00+01:00",
@@ -614,6 +684,20 @@
     "description": "Quelle: handball.net | HSG Fockbek/Nübbel/Alt Duvenstedt | Hallennummer 140702 | Spielnummer 14805109",
     "url": "https://www.handball.net/vereine/handball4all.schleswig-holstein.6251/spielplan?dateFrom=2025-07-01&dateTo=2026-06-30&page=3",
     "color": "#2563eb"
+  },
+  {
+    "id": "weekend-140703-kw45-2025-11-09-0900-volleyball-punktspielturnier-u-20",
+    "title": "Volleyball / Punktspielturnier / U 20",
+    "start": "2025-11-09T09:00:00+01:00",
+    "end": "2025-11-09T21:00:00+01:00",
+    "hall_id": "140703",
+    "hall": "Realschule Fockbek",
+    "type": "weekend",
+    "source": "weekend_belegung.xlsx",
+    "location": "Realschule Fockbek",
+    "description": "Quelle: data/weekend_belegung.xlsx | Blatt: KW45 | Excel-Halle: Sporthalle Bergschule",
+    "url": "",
+    "color": "#9333ea"
   },
   {
     "id": "handballnet-14547020",
@@ -1372,6 +1456,34 @@
     "color": "#16a34a"
   },
   {
+    "id": "weekend-140704-kw01-2026-01-03-ssc-fockbek-bogenschiessen",
+    "title": "SSC Fockbek / Bogenschiessen",
+    "start": "2026-01-03T08:00:00+01:00",
+    "end": "2026-01-03T09:30:00+01:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "weekend",
+    "source": "weekend_belegung.xlsx",
+    "location": "BSH Fockbek",
+    "description": "Quelle: data/weekend_belegung.xlsx | Blatt: KW01 | Excel-Halle: Bgm.-Schadwinkel-Halle | keine konkrete Uhrzeit in Excel gefunden",
+    "url": "",
+    "color": "#16a34a"
+  },
+  {
+    "id": "weekend-140704-kw01-2026-01-04-ssc-fockbek-bogenschiessen",
+    "title": "SSC Fockbek / Bogenschiessen",
+    "start": "2026-01-04T08:00:00+01:00",
+    "end": "2026-01-04T09:30:00+01:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "weekend",
+    "source": "weekend_belegung.xlsx",
+    "location": "BSH Fockbek",
+    "description": "Quelle: data/weekend_belegung.xlsx | Blatt: KW01 | Excel-Halle: Bgm.-Schadwinkel-Halle | keine konkrete Uhrzeit in Excel gefunden",
+    "url": "",
+    "color": "#16a34a"
+  },
+  {
     "id": "handballnet-14547046",
     "title": "mJD 2 · HSG Fockbek/Nübbel/Alt Duvenstedt",
     "start": "2026-01-07T16:30:00+01:00",
@@ -1454,6 +1566,20 @@
     "description": "Quelle: handball.net | HSG Fockbek/Nübbel/Alt Duvenstedt | Hallennummer 140702 | Spielnummer 14005352",
     "url": "https://www.handball.net/vereine/handball4all.schleswig-holstein.6251/spielplan?dateFrom=2025-07-01&dateTo=2026-06-30&page=5",
     "color": "#2563eb"
+  },
+  {
+    "id": "weekend-140703-kw02-2026-01-11-0800-kfv-rd-robert-lohmann-04351-768849-futsalkreismeisterschaft-ca",
+    "title": "KFV RD / Robert Lohmann / 04351 768849 / Futsalkreismeisterschaft / ca.",
+    "start": "2026-01-11T08:00:00+01:00",
+    "end": "2026-01-11T18:00:00+01:00",
+    "hall_id": "140703",
+    "hall": "Realschule Fockbek",
+    "type": "weekend",
+    "source": "weekend_belegung.xlsx",
+    "location": "Realschule Fockbek",
+    "description": "Quelle: data/weekend_belegung.xlsx | Blatt: KW02 | Excel-Halle: Sporthalle Bergschule",
+    "url": "",
+    "color": "#9333ea"
   },
   {
     "id": "handballnet-14008100",
@@ -2618,6 +2744,118 @@
     "color": "#2563eb"
   },
   {
+    "id": "weekend-140704-kw14-2026-04-03-karfreitag-vergabe-nur-gemeinde",
+    "title": "Karfreitag Vergabe nur Gemeinde",
+    "start": "2026-04-03T08:00:00+02:00",
+    "end": "2026-04-03T22:00:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "weekend",
+    "source": "weekend_belegung.xlsx",
+    "location": "BSH Fockbek",
+    "description": "Quelle: data/weekend_belegung.xlsx | Blatt: KW14 | Excel-Halle: Bgm.-Schadwinkel-Halle | keine konkrete Uhrzeit in Excel gefunden",
+    "url": "",
+    "color": "#16a34a"
+  },
+  {
+    "id": "weekend-140703-kw14-2026-04-03-karfreitag-vergabe-nur-gemeinde",
+    "title": "Karfreitag Vergabe nur Gemeinde",
+    "start": "2026-04-03T08:00:00+02:00",
+    "end": "2026-04-03T22:00:00+02:00",
+    "hall_id": "140703",
+    "hall": "Realschule Fockbek",
+    "type": "weekend",
+    "source": "weekend_belegung.xlsx",
+    "location": "Realschule Fockbek",
+    "description": "Quelle: data/weekend_belegung.xlsx | Blatt: KW14 | Excel-Halle: Sporthalle Bergschule | keine konkrete Uhrzeit in Excel gefunden",
+    "url": "",
+    "color": "#9333ea"
+  },
+  {
+    "id": "weekend-140704-kw14-2026-04-04-osterwochenende",
+    "title": "Osterwochenende",
+    "start": "2026-04-04T08:00:00+02:00",
+    "end": "2026-04-04T22:00:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "weekend",
+    "source": "weekend_belegung.xlsx",
+    "location": "BSH Fockbek",
+    "description": "Quelle: data/weekend_belegung.xlsx | Blatt: KW14 | Excel-Halle: Bgm.-Schadwinkel-Halle | keine konkrete Uhrzeit in Excel gefunden",
+    "url": "",
+    "color": "#16a34a"
+  },
+  {
+    "id": "weekend-140703-kw14-2026-04-04-osterwochenende",
+    "title": "Osterwochenende",
+    "start": "2026-04-04T08:00:00+02:00",
+    "end": "2026-04-04T22:00:00+02:00",
+    "hall_id": "140703",
+    "hall": "Realschule Fockbek",
+    "type": "weekend",
+    "source": "weekend_belegung.xlsx",
+    "location": "Realschule Fockbek",
+    "description": "Quelle: data/weekend_belegung.xlsx | Blatt: KW14 | Excel-Halle: Sporthalle Bergschule | keine konkrete Uhrzeit in Excel gefunden",
+    "url": "",
+    "color": "#9333ea"
+  },
+  {
+    "id": "weekend-140704-kw14-2026-04-05-osterwochenende",
+    "title": "Osterwochenende",
+    "start": "2026-04-05T08:00:00+02:00",
+    "end": "2026-04-05T22:00:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "weekend",
+    "source": "weekend_belegung.xlsx",
+    "location": "BSH Fockbek",
+    "description": "Quelle: data/weekend_belegung.xlsx | Blatt: KW14 | Excel-Halle: Bgm.-Schadwinkel-Halle | keine konkrete Uhrzeit in Excel gefunden",
+    "url": "",
+    "color": "#16a34a"
+  },
+  {
+    "id": "weekend-140703-kw14-2026-04-05-osterwochenende",
+    "title": "Osterwochenende",
+    "start": "2026-04-05T08:00:00+02:00",
+    "end": "2026-04-05T22:00:00+02:00",
+    "hall_id": "140703",
+    "hall": "Realschule Fockbek",
+    "type": "weekend",
+    "source": "weekend_belegung.xlsx",
+    "location": "Realschule Fockbek",
+    "description": "Quelle: data/weekend_belegung.xlsx | Blatt: KW14 | Excel-Halle: Sporthalle Bergschule | keine konkrete Uhrzeit in Excel gefunden",
+    "url": "",
+    "color": "#9333ea"
+  },
+  {
+    "id": "weekend-140704-kw15-2026-04-06-ferien-sh-26-03-10-04-2026-ostermontag-gesperrt",
+    "title": "Ferien SH 26.03.-10.04.2026 / Ostermontag gesperrt",
+    "start": "2026-04-06T08:00:00+02:00",
+    "end": "2026-04-06T22:00:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "weekend",
+    "source": "weekend_belegung.xlsx",
+    "location": "BSH Fockbek",
+    "description": "Quelle: data/weekend_belegung.xlsx | Blatt: KW15 | Excel-Halle: Bgm.-Schadwinkel-Halle | keine konkrete Uhrzeit in Excel gefunden",
+    "url": "",
+    "color": "#16a34a"
+  },
+  {
+    "id": "weekend-140703-kw15-2026-04-06-ostermontag-gesperrt",
+    "title": "Ostermontag gesperrt",
+    "start": "2026-04-06T08:00:00+02:00",
+    "end": "2026-04-06T22:00:00+02:00",
+    "hall_id": "140703",
+    "hall": "Realschule Fockbek",
+    "type": "weekend",
+    "source": "weekend_belegung.xlsx",
+    "location": "Realschule Fockbek",
+    "description": "Quelle: data/weekend_belegung.xlsx | Blatt: KW15 | Excel-Halle: Sporthalle Bergschule | keine konkrete Uhrzeit in Excel gefunden",
+    "url": "",
+    "color": "#9333ea"
+  },
+  {
     "id": "handballnet-14000123",
     "title": "1. Frauen · HSG Kremperheide/Münsterdorf",
     "start": "2026-04-11T16:00:00+02:00",
@@ -2909,6 +3147,20 @@
     "location": "BSH Fockbek",
     "description": "Quelle: handball.net | HSG Fockbek/Nübbel/Alt Duvenstedt | Hallennummer 140704 | Spielnummer 14547329",
     "url": "https://www.handball.net/vereine/handball4all.schleswig-holstein.6251/spielplan?dateFrom=2025-07-01&dateTo=2026-06-30&page=9",
+    "color": "#16a34a"
+  },
+  {
+    "id": "weekend-140704-kw18-2026-05-01-vergabe-nur-mit-genehmigung-durch-die-gemeinde",
+    "title": "Vergabe nur mit Genehmigung durch die Gemeinde",
+    "start": "2026-05-01T08:00:00+02:00",
+    "end": "2026-05-01T22:00:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "weekend",
+    "source": "weekend_belegung.xlsx",
+    "location": "BSH Fockbek",
+    "description": "Quelle: data/weekend_belegung.xlsx | Blatt: KW18 | Excel-Halle: Bgm.-Schadwinkel-Halle | keine konkrete Uhrzeit in Excel gefunden",
+    "url": "",
     "color": "#16a34a"
   },
   {
@@ -4774,6 +5026,34 @@
     "color": "#16a34a"
   },
   {
+    "id": "weekend-140704-kw20-2026-05-14-himmelfahrt-gesperrt",
+    "title": "Himmelfahrt gesperrt",
+    "start": "2026-05-14T08:00:00+02:00",
+    "end": "2026-05-14T22:00:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "weekend",
+    "source": "weekend_belegung.xlsx",
+    "location": "BSH Fockbek",
+    "description": "Quelle: data/weekend_belegung.xlsx | Blatt: KW20 | Excel-Halle: Bgm.-Schadwinkel-Halle | keine konkrete Uhrzeit in Excel gefunden",
+    "url": "",
+    "color": "#16a34a"
+  },
+  {
+    "id": "weekend-140703-kw20-2026-05-14-himmelfahrt-gesperrt",
+    "title": "Himmelfahrt gesperrt",
+    "start": "2026-05-14T08:00:00+02:00",
+    "end": "2026-05-14T22:00:00+02:00",
+    "hall_id": "140703",
+    "hall": "Realschule Fockbek",
+    "type": "weekend",
+    "source": "weekend_belegung.xlsx",
+    "location": "Realschule Fockbek",
+    "description": "Quelle: data/weekend_belegung.xlsx | Blatt: KW20 | Excel-Halle: Sporthalle Bergschule | keine konkrete Uhrzeit in Excel gefunden",
+    "url": "",
+    "color": "#9333ea"
+  },
+  {
     "id": "blocked-140702-belegt-202605141500",
     "title": "Belegt",
     "start": "2026-05-14T15:00:00+02:00",
@@ -6144,6 +6424,48 @@
     "description": "optional laut Plan",
     "url": "",
     "color": "#2563eb"
+  },
+  {
+    "id": "weekend-140704-kw21-2026-05-24-pfingsten",
+    "title": "Pfingsten",
+    "start": "2026-05-24T08:00:00+02:00",
+    "end": "2026-05-24T22:00:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "weekend",
+    "source": "weekend_belegung.xlsx",
+    "location": "BSH Fockbek",
+    "description": "Quelle: data/weekend_belegung.xlsx | Blatt: KW21 | Excel-Halle: Bgm.-Schadwinkel-Halle | keine konkrete Uhrzeit in Excel gefunden",
+    "url": "",
+    "color": "#16a34a"
+  },
+  {
+    "id": "weekend-140704-kw22-2026-05-25-pfingsten-geperrt",
+    "title": "Pfingsten geperrt",
+    "start": "2026-05-25T08:00:00+02:00",
+    "end": "2026-05-25T22:00:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "weekend",
+    "source": "weekend_belegung.xlsx",
+    "location": "BSH Fockbek",
+    "description": "Quelle: data/weekend_belegung.xlsx | Blatt: KW22 | Excel-Halle: Bgm.-Schadwinkel-Halle | keine konkrete Uhrzeit in Excel gefunden",
+    "url": "",
+    "color": "#16a34a"
+  },
+  {
+    "id": "weekend-140703-kw22-2026-05-25-pfingsten-geperrt",
+    "title": "Pfingsten geperrt",
+    "start": "2026-05-25T08:00:00+02:00",
+    "end": "2026-05-25T22:00:00+02:00",
+    "hall_id": "140703",
+    "hall": "Realschule Fockbek",
+    "type": "weekend",
+    "source": "weekend_belegung.xlsx",
+    "location": "Realschule Fockbek",
+    "description": "Quelle: data/weekend_belegung.xlsx | Blatt: KW22 | Excel-Halle: Sporthalle Bergschule | keine konkrete Uhrzeit in Excel gefunden",
+    "url": "",
+    "color": "#9333ea"
   },
   {
     "id": "training-140702-minimini-ad-202605251500",

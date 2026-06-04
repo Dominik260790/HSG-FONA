@@ -1,4 +1,73 @@
 type,team,hall_id,weekday,start_time,end_time,date_from,date_to,notes
-training,Herren 1,140702,MO,20:00,22:00,2025-09-01,2026-06-30,Regeltraining
-training,Damen 1,140702,WE,19:00,21:00,2025-09-01,2026-06-30,Regeltraining
-training,Damen 1,140704,WE,19:00,21:00,2025-09-01,2026-06-30,Regeltraining
+training,MiniMini AD,140702,MO,15:00,16:00,2026-05-01,2027-04-30,
+blocked,belegt,140702,MO,16:00,17:00,2026-05-01,2027-04-30,externe/sonstige Hallenbelegung laut Plan
+training,mB,140702,MO,17:00,18:30,2026-05-01,2027-04-30,
+blocked,belegt,140702,MO,18:30,19:00,2026-05-01,2027-04-30,externe/sonstige Hallenbelegung laut Plan
+training,Athletik Wulf,140702,MO,19:00,21:00,2026-05-01,2027-04-30,halbe Halle laut Fußnote
+blocked,belegt,140702,MO,21:00,22:00,2026-05-01,2027-04-30,externe/sonstige Hallenbelegung laut Plan
+blocked,belegt,140702,TU,15:00,19:00,2026-05-01,2027-04-30,externe/sonstige Hallenbelegung laut Plan
+training,1. Frauen,140702,TU,19:00,20:30,2026-05-01,2027-04-30,
+training,3. Frauen,140702,TU,20:30,22:00,2026-05-01,2027-04-30,
+blocked,belegt,140702,WE,15:00,16:00,2026-05-01,2027-04-30,externe/sonstige Hallenbelegung laut Plan
+training,mE,140702,WE,16:00,17:30,2026-05-01,2027-04-30,
+training,wB1 (Region),140702,WE,17:30,19:00,2026-05-01,2027-04-30,
+training,wA 2 (FONA),140702,WE,19:00,20:30,2026-05-01,2027-04-30,
+blocked,belegt,140702,TH,15:00,16:30,2026-05-01,2027-04-30,externe/sonstige Hallenbelegung laut Plan
+blocked,belegt,140702,TH,17:00,19:15,2026-05-01,2027-04-30,laut Fußnote: bis 19:15 Uhr
+training,1. Männer,140702,TH,19:15,21:00,2026-05-01,2027-04-30,Start 19:15 wegen Fußnote belegt bis 19:15 Uhr; bitte prüfen
+training,Minis AD,140702,FR,15:00,16:00,2026-05-01,2027-04-30,
+training,Maxis AD + FN,140702,FR,16:00,17:00,2026-05-01,2027-04-30,
+training,wE,140702,FR,17:00,18:30,2026-05-01,2027-04-30,
+training,wB1 (Region),140702,FR,18:30,20:00,2026-05-01,2027-04-30,
+training,wB 2 (OKT)*,140702,FR,20:00,21:00,2026-05-01,2027-04-30,"laut Fußnote: bis Fußballer kommen BSH, danach AD"
+optional,ggfs. Seniorenspiel,140702,FR,21:00,22:00,2026-05-01,2027-04-30,optional laut Plan
+training,MiniMini FN*,140704,MO,16:00,17:30,2026-05-01,2027-04-30,"laut Fußnote: bis Herbst, dann Wechsel auf Mi (RSH)"
+blocked,belegt,140704,MO,17:30,19:00,2026-05-01,2027-04-30,externe/sonstige Hallenbelegung laut Plan
+training,mA,140704,MO,19:00,20:30,2026-05-01,2027-04-30,
+training,1. Männer,140704,MO,20:30,22:00,2026-05-01,2027-04-30,
+training,Maxis AD + FN,140704,TU,16:00,17:00,2026-05-01,2027-04-30,Fußballerzeit laut Planfarbe
+training,mE 3. TE,140704,TU,17:00,18:30,2026-05-01,2027-04-30,Fußballerzeit laut Planfarbe
+blocked,belegt,140704,TU,18:30,22:00,2026-05-01,2027-04-30,externe/sonstige Hallenbelegung laut Plan
+blocked,belegt,140704,WE,15:00,16:00,2026-05-01,2027-04-30,externe/sonstige Hallenbelegung laut Plan
+training,mD,140704,WE,16:00,17:30,2026-05-01,2027-04-30,
+training,mC,140704,WE,17:30,19:00,2026-05-01,2027-04-30,
+training,InklusionTr.,140704,WE,19:00,20:30,2026-05-01,2027-04-30,
+training,2. Frauen,140704,WE,20:30,22:00,2026-05-01,2027-04-30,
+training,wD,140704,TH,16:00,17:30,2026-05-01,2027-04-30,
+training,mB,140704,TH,17:30,19:00,2026-05-01,2027-04-30,
+training,1. Frauen,140704,TH,19:00,20:30,2026-05-01,2027-04-30,
+training,4. Frauen,140704,TH,20:30,22:00,2026-05-01,2027-04-30,
+blocked,belegt,140704,FR,15:00,15:30,2026-05-01,2027-04-30,externe/sonstige Hallenbelegung laut Plan
+training,mE,140704,FR,15:30,17:00,2026-05-01,2027-04-30,
+training,wC1,140704,FR,17:00,18:30,2026-05-01,2027-04-30,
+training,wB2 (OKT)*,140704,FR,18:30,20:00,2026-05-01,2027-04-30,"laut Fußnote: bis Fußballer kommen BSH, danach AD"
+blocked,belegt,KRUMMENORT,MO,19:00,21:00,2026-05-01,2027-04-30,Krummenort-Zusatzblock aus PDF; Wochentag bitte prüfen
+training,wD,140717,MO,16:00,17:30,2026-05-01,2027-04-30,
+blocked,belegt,140717,MO,17:30,18:30,2026-05-01,2027-04-30,externe/sonstige Hallenbelegung laut Plan
+blocked,belegt,140717,MO,20:00,22:00,2026-05-01,2027-04-30,externe/sonstige Hallenbelegung laut Plan
+blocked,belegt,140717,TU,15:00,16:30,2026-05-01,2027-04-30,externe/sonstige Hallenbelegung laut Plan
+training,wC1,140717,TU,16:30,18:00,2026-05-01,2027-04-30,
+blocked,belegt,140717,TU,18:00,19:30,2026-05-01,2027-04-30,externe/sonstige Hallenbelegung laut Plan
+blocked,belegt,140717,WE,15:00,16:30,2026-05-01,2027-04-30,externe/sonstige Hallenbelegung laut Plan
+training,wE,140717,WE,16:30,18:00,2026-05-01,2027-04-30,
+blocked,belegt,140717,WE,18:00,19:30,2026-05-01,2027-04-30,externe/sonstige Hallenbelegung laut Plan
+blocked,belegt,140717,TH,16:00,20:00,2026-05-01,2027-04-30,externe/sonstige Hallenbelegung laut Plan
+training,2. Männer,140717,TH,20:00,22:00,2026-05-01,2027-04-30,
+blocked,belegt,140717,FR,15:00,21:30,2026-05-01,2027-04-30,externe/sonstige Hallenbelegung laut Plan
+blocked,belegt,140703,MO,16:00,17:30,2026-05-01,2027-04-30,externe/sonstige Hallenbelegung laut Plan
+training,mC,140703,MO,18:00,19:30,2026-05-01,2027-04-30,
+training,2. Frauen,140703,MO,19:30,20:30,2026-05-01,2027-04-30,
+blocked,belegt,140703,MO,20:30,22:00,2026-05-01,2027-04-30,externe/sonstige Hallenbelegung laut Plan
+blocked,belegt,140703,TU,15:00,20:30,2026-05-01,2027-04-30,externe/sonstige Hallenbelegung laut Plan
+blocked,SV Fockbek,140703,TU,20:30,22:00,2026-05-01,2027-04-30,Stammverein/sonstige Nutzung laut Plan
+training,MiniMini FN,140703,WE,15:30,16:30,2026-05-01,2027-04-30,laut Fußnote ggf. Wechsel von Montag BSH nach Herbst prüfen
+football,Fußballerzeit,140703,WE,16:30,18:00,2026-05-01,2027-04-30,"wird laut Legende erst ab Okt/Nov belegt, solange durch HSG nutzbar"
+blocked,belegt,140703,WE,18:00,19:30,2026-05-01,2027-04-30,externe/sonstige Hallenbelegung laut Plan
+football,Fußballerzeit,140703,WE,19:30,22:00,2026-05-01,2027-04-30,"wird laut Legende erst ab Okt/Nov belegt, solange durch HSG nutzbar"
+blocked,belegt,140703,TH,15:00,17:30,2026-05-01,2027-04-30,externe/sonstige Hallenbelegung laut Plan
+training,mD,140703,TH,17:30,19:00,2026-05-01,2027-04-30,
+training,3. Frauen,140703,TH,19:00,20:30,2026-05-01,2027-04-30,
+training,Männer o.W.,140703,TH,20:30,22:00,2026-05-01,2027-04-30,
+blocked,belegt,140703,FR,15:00,15:30,2026-05-01,2027-04-30,externe/sonstige Hallenbelegung laut Plan
+training,Minis FN,140703,FR,15:30,17:00,2026-05-01,2027-04-30,
+blocked,belegt,140703,FR,17:00,22:00,2026-05-01,2027-04-30,externe/sonstige Hallenbelegung laut Plan

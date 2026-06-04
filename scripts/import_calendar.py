@@ -192,42 +192,177 @@ def extract_game_number(block: str, hall_id: str, start: datetime) -> str:
     return f"{hall_id}-{start:%Y%m%d%H%M}"
 
 
-def extract_title(block: str) -> str:
-    """Create a shorter, cleaner title from noisy handball.net text."""
+def strip_schedule_metadata(text: str) -> str:
+    """Remove handball.net metadata from a text block."""
+    text = clean_text(text)
 
-    text = clean_text(block)
-
-    # Keep only text before schedule metadata.
     text = re.split(
         r"Spielbeginn|Spielnummer|Kalender abonnieren|letztes\s+Update|Halle",
         text,
         flags=re.I,
     )[0]
 
-    # Remove short date fragments, full dates and times.
     text = re.sub(r"\b(?:Mo|Di|Mi|Do|Fr|Sa|So)\.?,?\s*\d{1,2}\.\d{1,2}\.?", " ", text, flags=re.I)
     text = re.sub(r"\b\d{1,2}\.\d{1,2}\.\d{4}\b", " ", text)
     text = re.sub(r"\b\d{1,2}:\d{2}\b", " ", text)
+    text = re.sub(r"\bUhr\b", " ", text, flags=re.I)
 
-    # Remove played result, e.g. "26 : 27".
-    text = re.sub(r"\b\d{1,3}\s*:\s*\d{1,3}\b", " - ", text)
+    return clean_text(text)
 
-    # Normalize dash spacing.
-    text = re.sub(r"\s*-\s*", " - ", text)
-    text = clean_text(text)
 
-    # If the club name appears, start the title there.
-    # This removes league/competition noise before the teams.
-    club_index = text.rfind(CLUB_NAME)
-    if club_index >= 0:
-        text = text[club_index:]
+def extract_club_team_number_and_opponent(block: str) -> tuple[str, str]:
+    """Return club team number and opponent.
 
-    text = clean_text(text)
+    Examples:
+    HSG Fockbek/Nübbel/Alt Duvenstedt 26 : 27 HFF Munkbrarup
+      -> "", "HFF Munkbrarup"
 
-    if not text:
-        return "Handballspiel"
+    HSG Fockbek/Nübbel/Alt Duvenstedt 2 23 : 19 SG Oeversee/Jarplund-Weding
+      -> "2", "SG Oeversee/Jarplund-Weding"
+    """
 
-    return text[:140]
+    text = strip_schedule_metadata(block)
+
+    club_match = re.search(re.escape(CLUB_NAME), text, flags=re.I)
+
+    if not club_match:
+        return "", ""
+
+    after_club = text[club_match.end():].strip()
+
+    team_number = ""
+
+    # Case: "2 23 : 19 Opponent"
+    match = re.match(r"^(\d+)\s+(\d{1,3})\s*:\s*(\d{1,3})\s+(.+)$", after_club)
+    if match:
+        team_number = match.group(1)
+        opponent = match.group(4)
+        return team_number, clean_opponent(opponent)
+
+    # Case: "26 : 27 Opponent"
+    match = re.match(r"^(\d{1,3})\s*:\s*(\d{1,3})\s+(.+)$", after_club)
+    if match:
+        opponent = match.group(3)
+        return team_number, clean_opponent(opponent)
+
+    # Case: "2 Opponent" for future games without result.
+    match = re.match(r"^(\d+)\s+(.+)$", after_club)
+    if match:
+        possible_number = match.group(1)
+        rest = match.group(2).strip()
+
+        # Team numbers are normally small.
+        if possible_number in {"2", "3", "4", "5"}:
+            team_number = possible_number
+            return team_number, clean_opponent(rest)
+
+    # Case: "Opponent"
+    return team_number, clean_opponent(after_club)
+
+
+def clean_opponent(opponent: str) -> str:
+    opponent = clean_text(opponent)
+
+    opponent = re.split(
+        r"Spielbeginn|Spielnummer|Kalender abonnieren|letztes\s+Update|Halle",
+        opponent,
+        flags=re.I,
+    )[0]
+
+    opponent = re.sub(r"\bUhr\b", " ", opponent, flags=re.I)
+    opponent = re.sub(r"\bSpiel\b.*$", " ", opponent, flags=re.I)
+    opponent = clean_text(opponent)
+
+    return opponent[:80]
+
+
+def extract_team_class(block: str, team_number: str) -> str:
+    """Extract class/team label like wJC, mJC, 1. Frauen, 2. Männer."""
+
+    text = strip_schedule_metadata(block)
+
+    club_match = re.search(re.escape(CLUB_NAME), text, flags=re.I)
+
+    if club_match:
+        prefix = text[:club_match.start()]
+    else:
+        prefix = text
+
+    prefix = clean_text(prefix)
+
+    # Prefer explicit handball.net short codes such as wJC-RL-2, mJB-RL-1, mJA-RL-2.
+    code_match = re.search(r"\b([wm]J[A-E](?:-[A-Za-z0-9]+)*)\b", prefix)
+    if code_match:
+        team_class = code_match.group(1)
+
+        if team_number:
+            return f"{team_class} {team_number}"
+
+        return team_class
+
+    lower = prefix.lower()
+
+    youth_patterns = [
+        (r"weibliche\s+jugend\s+a", "wJA"),
+        (r"weibliche\s+jugend\s+b", "wJB"),
+        (r"weibliche\s+jugend\s+c", "wJC"),
+        (r"weibliche\s+jugend\s+d", "wJD"),
+        (r"weibliche\s+jugend\s+e", "wJE"),
+        (r"männliche\s+jugend\s+a", "mJA"),
+        (r"maennliche\s+jugend\s+a", "mJA"),
+        (r"männliche\s+jugend\s+b", "mJB"),
+        (r"maennliche\s+jugend\s+b", "mJB"),
+        (r"männliche\s+jugend\s+c", "mJC"),
+        (r"maennliche\s+jugend\s+c", "mJC"),
+        (r"männliche\s+jugend\s+d", "mJD"),
+        (r"maennliche\s+jugend\s+d", "mJD"),
+        (r"männliche\s+jugend\s+e", "mJE"),
+        (r"maennliche\s+jugend\s+e", "mJE"),
+        (r"weibliche\s+d-jugend", "wJD"),
+        (r"weibliche\s+e-jugend", "wJE"),
+        (r"männliche\s+d-jugend", "mJD"),
+        (r"maennliche\s+d-jugend", "mJD"),
+        (r"männliche\s+e-jugend", "mJE"),
+        (r"maennliche\s+e-jugend", "mJE"),
+        (r"gemischt\s+f-jugend", "F-Jugend"),
+    ]
+
+    for pattern, label in youth_patterns:
+        if re.search(pattern, lower):
+            if team_number:
+                return f"{label} {team_number}"
+            return label
+
+    if "frauen" in lower:
+        number = team_number or "1"
+        return f"{number}. Frauen"
+
+    if "männer" in lower or "maenner" in lower:
+        number = team_number or "1"
+        return f"{number}. Männer"
+
+    if "minis" in lower:
+        return "Minis"
+
+    if "maxis" in lower:
+        return "Maxis"
+
+    return "Team"
+
+
+def extract_game_title(block: str, start: datetime) -> str:
+    """Build title as: HH:MM · class/team · opponent."""
+
+    team_number, opponent = extract_club_team_number_and_opponent(block)
+    team_class = extract_team_class(block, team_number)
+    start_time = start.strftime("%H:%M")
+
+    parts = [start_time, team_class]
+
+    if opponent:
+        parts.append(opponent)
+
+    return " · ".join(parts)
 
 
 def fetch_handballnet_games() -> list[CalendarEvent]:

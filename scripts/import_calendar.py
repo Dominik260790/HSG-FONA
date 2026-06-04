@@ -105,7 +105,12 @@ def to_iso(dt: datetime) -> str:
 
 def safe_id(value: str) -> str:
     value = value.lower().strip()
-    value = value.replace("ä", "ae").replace("ö", "oe").replace("ü", "ue").replace("ß", "ss")
+    value = (
+        value.replace("ä", "ae")
+        .replace("ö", "oe")
+        .replace("ü", "ue")
+        .replace("ß", "ss")
+    )
     value = re.sub(r"[^a-z0-9]+", "-", value)
     value = value.strip("-")
     return value or "event"
@@ -194,6 +199,7 @@ def extract_game_number(block: str, hall_id: str, start: datetime) -> str:
 
 def strip_schedule_metadata(text: str) -> str:
     """Remove handball.net metadata from a text block."""
+
     text = clean_text(text)
 
     text = re.split(
@@ -202,12 +208,34 @@ def strip_schedule_metadata(text: str) -> str:
         flags=re.I,
     )[0]
 
-    text = re.sub(r"\b(?:Mo|Di|Mi|Do|Fr|Sa|So)\.?,?\s*\d{1,2}\.\d{1,2}\.?", " ", text, flags=re.I)
+    text = re.sub(
+        r"\b(?:Mo|Di|Mi|Do|Fr|Sa|So)\.?,?\s*\d{1,2}\.\d{1,2}\.?",
+        " ",
+        text,
+        flags=re.I,
+    )
     text = re.sub(r"\b\d{1,2}\.\d{1,2}\.\d{4}\b", " ", text)
     text = re.sub(r"\b\d{1,2}:\d{2}\b", " ", text)
     text = re.sub(r"\bUhr\b", " ", text, flags=re.I)
 
     return clean_text(text)
+
+
+def clean_opponent(opponent: str) -> str:
+    opponent = clean_text(opponent)
+
+    opponent = re.split(
+        r"Spielbeginn|Spielnummer|Kalender abonnieren|letztes\s+Update|Halle",
+        opponent,
+        flags=re.I,
+    )[0]
+
+    opponent = re.sub(r"\bUhr\b", " ", opponent, flags=re.I)
+    opponent = re.sub(r"\bSpiel\b.*$", " ", opponent, flags=re.I)
+    opponent = re.sub(r"\bKalender\b.*$", " ", opponent, flags=re.I)
+    opponent = clean_text(opponent)
+
+    return opponent[:80]
 
 
 def extract_club_team_number_and_opponent(block: str) -> tuple[str, str]:
@@ -260,22 +288,6 @@ def extract_club_team_number_and_opponent(block: str) -> tuple[str, str]:
     return team_number, clean_opponent(after_club)
 
 
-def clean_opponent(opponent: str) -> str:
-    opponent = clean_text(opponent)
-
-    opponent = re.split(
-        r"Spielbeginn|Spielnummer|Kalender abonnieren|letztes\s+Update|Halle",
-        opponent,
-        flags=re.I,
-    )[0]
-
-    opponent = re.sub(r"\bUhr\b", " ", opponent, flags=re.I)
-    opponent = re.sub(r"\bSpiel\b.*$", " ", opponent, flags=re.I)
-    opponent = clean_text(opponent)
-
-    return opponent[:80]
-
-
 def extract_team_class(block: str, team_number: str) -> str:
     """Extract class/team label like wJC, mJC, 1. Frauen, 2. Männer."""
 
@@ -291,9 +303,12 @@ def extract_team_class(block: str, team_number: str) -> str:
     prefix = clean_text(prefix)
 
     # Prefer explicit handball.net short codes such as wJC-RL-2, mJB-RL-1, mJA-RL-2.
-    code_match = re.search(r"\b([wm]J[A-E](?:-[A-Za-z0-9]+)*)\b", prefix)
+    code_match = re.search(r"\b([wm]J[A-E](?:-[A-Za-z0-9]+)*)\b", prefix, flags=re.I)
     if code_match:
         team_class = code_match.group(1)
+
+        # Normalize first letter to lowercase, J remains uppercase.
+        team_class = team_class[0].lower() + team_class[1:]
 
         if team_number:
             return f"{team_class} {team_number}"
@@ -351,13 +366,16 @@ def extract_team_class(block: str, team_number: str) -> str:
 
 
 def extract_game_title(block: str, start: datetime) -> str:
-    """Build title as: HH:MM · class/team · opponent."""
+    """Build title as: class/team · opponent.
+
+    The event time is already displayed by FullCalendar,
+    so the kickoff time is intentionally not included in the title.
+    """
 
     team_number, opponent = extract_club_team_number_and_opponent(block)
     team_class = extract_team_class(block, team_number)
-    start_time = start.strftime("%H:%M")
 
-    parts = [start_time, team_class]
+    parts = [team_class]
 
     if opponent:
         parts.append(opponent)
@@ -368,9 +386,12 @@ def extract_game_title(block: str, start: datetime) -> str:
 def fetch_handballnet_games() -> list[CalendarEvent]:
     """Fetch paginated club schedule from handball.net and parse games safely.
 
-    handball.net paginates the club schedule. One season URL can say
-    "443 Spiele gefunden", but page 1 only contains the first slice of games.
-    Therefore we request page 1, page 2, page 3 ... until no new games are found.
+    Rules:
+    - All pagination pages are requested.
+    - Only known halls from HALLS are imported.
+    - Only "Spielbeginn" may define the event start.
+    - "letztes Update" must never define the event start.
+    - Duplicate HTML blocks are deduplicated by game number.
     """
 
     base_url = (
@@ -386,8 +407,6 @@ def fetch_handballnet_games() -> list[CalendarEvent]:
     events: list[CalendarEvent] = []
     seen: set[str] = set()
 
-    # The current handball.net page shows pagination up to 9 pages.
-    # We use 20 as a safe upper limit in case the season grows.
     max_pages = 20
     pages_without_new_events = 0
 
@@ -426,7 +445,6 @@ def fetch_handballnet_games() -> list[CalendarEvent]:
         before_count = len(events)
 
         for block in text_blocks:
-            # Remove update text before parsing anything else.
             block_without_update = re.split(r"letztes\s+Update", block, flags=re.I)[0]
 
             for hall_id, hall in HALLS.items():
@@ -475,8 +493,8 @@ def fetch_handballnet_games() -> list[CalendarEvent]:
         new_events = len(events) - before_count
         print(f"handball.net page {page}: {new_events} new hall games")
 
-        # If a page produces no new known-hall games, do not stop immediately:
-        # a page may contain only away games. Stop only after several empty pages.
+        # Do not stop immediately after one empty page:
+        # a page can contain only away games.
         if new_events == 0:
             pages_without_new_events += 1
         else:
@@ -487,6 +505,7 @@ def fetch_handballnet_games() -> list[CalendarEvent]:
             break
 
     return sorted(events, key=lambda e: e.start)
+
 
 def title_for_training_event(event_type: str, team: str) -> str:
     event_type = (event_type or "training").strip().lower()
@@ -568,9 +587,7 @@ def load_training_events() -> list[CalendarEvent]:
                 start = datetime.combine(day_dt.date(), start_t, tzinfo=BERLIN)
                 end = datetime.combine(day_dt.date(), end_t, tzinfo=BERLIN)
 
-                event_id = (
-                    f"{event_type}-{hall_id}-{safe_id(team)}-{start:%Y%m%d%H%M}"
-                )
+                event_id = f"{event_type}-{hall_id}-{safe_id(team)}-{start:%Y%m%d%H%M}"
 
                 events.append(
                     CalendarEvent(

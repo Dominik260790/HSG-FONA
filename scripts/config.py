@@ -15,6 +15,19 @@ HALLS = {
         "slug": "alt-duvenstedt",
         "color": "#2563eb",
     },
+    "140704": {
+        "name": "BSH Fockbek",
+        "slug": "BSH",
+    },
+    "140717": {
+        "name": "Sporthalle Nuebbel",
+        "slug": "Nuebbel",
+    },
+     "140703": {
+        "name": "Realschule Fockbek",
+        "slug": "RSH",
+    },
+        
     # Beispiele ergänzen:
     # "140704": {"name": "Sporthalle Fockbek", "slug": "fockbek", "color": "#16a34a"},
     # "140705": {"name": "Sporthalle Nübbel", "slug": "nuebbel", "color": "#dc2626"},

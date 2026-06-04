@@ -28,6 +28,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "training-140704-damen-1-202509031900",
+    "title": "Training Damen 1",
+    "start": "2025-09-03T19:00:00+02:00",
+    "end": "2025-09-03T21:00:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
+  },
+  {
     "id": "training-140702-herren-1-202509082000",
     "title": "Training Herren 1",
     "start": "2025-09-08T20:00:00+02:00",
@@ -54,6 +68,20 @@
     "description": "Regeltraining",
     "url": "",
     "color": "#2563eb"
+  },
+  {
+    "id": "training-140704-damen-1-202509101900",
+    "title": "Training Damen 1",
+    "start": "2025-09-10T19:00:00+02:00",
+    "end": "2025-09-10T21:00:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
   },
   {
     "id": "handballnet-14726004",
@@ -166,6 +194,20 @@
     "description": "Regeltraining",
     "url": "",
     "color": "#2563eb"
+  },
+  {
+    "id": "training-140704-damen-1-202509171900",
+    "title": "Training Damen 1",
+    "start": "2025-09-17T19:00:00+02:00",
+    "end": "2025-09-17T21:00:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
   },
   {
     "id": "handballnet-14707003",
@@ -322,6 +364,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "training-140704-damen-1-202509241900",
+    "title": "Training Damen 1",
+    "start": "2025-09-24T19:00:00+02:00",
+    "end": "2025-09-24T21:00:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
+  },
+  {
     "id": "training-140702-herren-1-202509292000",
     "title": "Training Herren 1",
     "start": "2025-09-29T20:00:00+02:00",
@@ -348,6 +404,20 @@
     "description": "Regeltraining",
     "url": "",
     "color": "#2563eb"
+  },
+  {
+    "id": "training-140704-damen-1-202510011900",
+    "title": "Training Damen 1",
+    "start": "2025-10-01T19:00:00+02:00",
+    "end": "2025-10-01T21:00:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
   },
   {
     "id": "training-140702-herren-1-202510062000",
@@ -378,6 +448,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "training-140704-damen-1-202510081900",
+    "title": "Training Damen 1",
+    "start": "2025-10-08T19:00:00+02:00",
+    "end": "2025-10-08T21:00:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
+  },
+  {
     "id": "training-140702-herren-1-202510132000",
     "title": "Training Herren 1",
     "start": "2025-10-13T20:00:00+02:00",
@@ -404,6 +488,20 @@
     "description": "Regeltraining",
     "url": "",
     "color": "#2563eb"
+  },
+  {
+    "id": "training-140704-damen-1-202510151900",
+    "title": "Training Damen 1",
+    "start": "2025-10-15T19:00:00+02:00",
+    "end": "2025-10-15T21:00:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
   },
   {
     "id": "training-140702-herren-1-202510202000",
@@ -434,6 +532,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "training-140704-damen-1-202510221900",
+    "title": "Training Damen 1",
+    "start": "2025-10-22T19:00:00+02:00",
+    "end": "2025-10-22T21:00:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
+  },
+  {
     "id": "training-140702-herren-1-202510272000",
     "title": "Training Herren 1",
     "start": "2025-10-27T20:00:00+01:00",
@@ -460,6 +572,20 @@
     "description": "Regeltraining",
     "url": "",
     "color": "#2563eb"
+  },
+  {
+    "id": "training-140704-damen-1-202510291900",
+    "title": "Training Damen 1",
+    "start": "2025-10-29T19:00:00+01:00",
+    "end": "2025-10-29T21:00:00+01:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
   },
   {
     "id": "training-140702-herren-1-202511032000",
@@ -490,6 +616,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "training-140704-damen-1-202511051900",
+    "title": "Training Damen 1",
+    "start": "2025-11-05T19:00:00+01:00",
+    "end": "2025-11-05T21:00:00+01:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
+  },
+  {
     "id": "training-140702-herren-1-202511102000",
     "title": "Training Herren 1",
     "start": "2025-11-10T20:00:00+01:00",
@@ -516,6 +656,20 @@
     "description": "Regeltraining",
     "url": "",
     "color": "#2563eb"
+  },
+  {
+    "id": "training-140704-damen-1-202511121900",
+    "title": "Training Damen 1",
+    "start": "2025-11-12T19:00:00+01:00",
+    "end": "2025-11-12T21:00:00+01:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
   },
   {
     "id": "training-140702-herren-1-202511172000",
@@ -546,6 +700,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "training-140704-damen-1-202511191900",
+    "title": "Training Damen 1",
+    "start": "2025-11-19T19:00:00+01:00",
+    "end": "2025-11-19T21:00:00+01:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
+  },
+  {
     "id": "training-140702-herren-1-202511242000",
     "title": "Training Herren 1",
     "start": "2025-11-24T20:00:00+01:00",
@@ -572,6 +740,20 @@
     "description": "Regeltraining",
     "url": "",
     "color": "#2563eb"
+  },
+  {
+    "id": "training-140704-damen-1-202511261900",
+    "title": "Training Damen 1",
+    "start": "2025-11-26T19:00:00+01:00",
+    "end": "2025-11-26T21:00:00+01:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
   },
   {
     "id": "training-140702-herren-1-202512012000",
@@ -602,6 +784,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "training-140704-damen-1-202512031900",
+    "title": "Training Damen 1",
+    "start": "2025-12-03T19:00:00+01:00",
+    "end": "2025-12-03T21:00:00+01:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
+  },
+  {
     "id": "training-140702-herren-1-202512082000",
     "title": "Training Herren 1",
     "start": "2025-12-08T20:00:00+01:00",
@@ -628,6 +824,20 @@
     "description": "Regeltraining",
     "url": "",
     "color": "#2563eb"
+  },
+  {
+    "id": "training-140704-damen-1-202512101900",
+    "title": "Training Damen 1",
+    "start": "2025-12-10T19:00:00+01:00",
+    "end": "2025-12-10T21:00:00+01:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
   },
   {
     "id": "training-140702-herren-1-202512152000",
@@ -658,6 +868,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "training-140704-damen-1-202512171900",
+    "title": "Training Damen 1",
+    "start": "2025-12-17T19:00:00+01:00",
+    "end": "2025-12-17T21:00:00+01:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
+  },
+  {
     "id": "training-140702-herren-1-202512222000",
     "title": "Training Herren 1",
     "start": "2025-12-22T20:00:00+01:00",
@@ -684,6 +908,20 @@
     "description": "Regeltraining",
     "url": "",
     "color": "#2563eb"
+  },
+  {
+    "id": "training-140704-damen-1-202512241900",
+    "title": "Training Damen 1",
+    "start": "2025-12-24T19:00:00+01:00",
+    "end": "2025-12-24T21:00:00+01:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
   },
   {
     "id": "training-140702-herren-1-202512292000",
@@ -742,6 +980,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "training-140704-damen-1-202512311900",
+    "title": "Training Damen 1",
+    "start": "2025-12-31T19:00:00+01:00",
+    "end": "2025-12-31T21:00:00+01:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
+  },
+  {
     "id": "handballnet-14548572",
     "title": "Region Mitte - weibliche E-Jugend Kreisliga Rensburg Rückrunde A Sa, 09.08. HSG Fockbek/Nübbel/Alt Duvenstedt 19 : 14 Bü",
     "start": "2026-01-01T08:04:00+01:00",
@@ -784,6 +1036,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "training-140704-damen-1-202601071900",
+    "title": "Training Damen 1",
+    "start": "2026-01-07T19:00:00+01:00",
+    "end": "2026-01-07T21:00:00+01:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
+  },
+  {
     "id": "training-140702-herren-1-202601122000",
     "title": "Training Herren 1",
     "start": "2026-01-12T20:00:00+01:00",
@@ -810,6 +1076,20 @@
     "description": "Regeltraining",
     "url": "",
     "color": "#2563eb"
+  },
+  {
+    "id": "training-140704-damen-1-202601141900",
+    "title": "Training Damen 1",
+    "start": "2026-01-14T19:00:00+01:00",
+    "end": "2026-01-14T21:00:00+01:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
   },
   {
     "id": "handballnet-14547361",
@@ -868,6 +1148,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "training-140704-damen-1-202601211900",
+    "title": "Training Damen 1",
+    "start": "2026-01-21T19:00:00+01:00",
+    "end": "2026-01-21T21:00:00+01:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
+  },
+  {
     "id": "training-140702-herren-1-202601262000",
     "title": "Training Herren 1",
     "start": "2026-01-26T20:00:00+01:00",
@@ -924,6 +1218,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "training-140704-damen-1-202601281900",
+    "title": "Training Damen 1",
+    "start": "2026-01-28T19:00:00+01:00",
+    "end": "2026-01-28T21:00:00+01:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
+  },
+  {
     "id": "training-140702-herren-1-202602022000",
     "title": "Training Herren 1",
     "start": "2026-02-02T20:00:00+01:00",
@@ -950,6 +1258,20 @@
     "description": "Regeltraining",
     "url": "",
     "color": "#2563eb"
+  },
+  {
+    "id": "training-140704-damen-1-202602041900",
+    "title": "Training Damen 1",
+    "start": "2026-02-04T19:00:00+01:00",
+    "end": "2026-02-04T21:00:00+01:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
   },
   {
     "id": "training-140702-herren-1-202602092000",
@@ -980,6 +1302,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "training-140704-damen-1-202602111900",
+    "title": "Training Damen 1",
+    "start": "2026-02-11T19:00:00+01:00",
+    "end": "2026-02-11T21:00:00+01:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
+  },
+  {
     "id": "training-140702-herren-1-202602162000",
     "title": "Training Herren 1",
     "start": "2026-02-16T20:00:00+01:00",
@@ -1006,6 +1342,20 @@
     "description": "Regeltraining",
     "url": "",
     "color": "#2563eb"
+  },
+  {
+    "id": "training-140704-damen-1-202602181900",
+    "title": "Training Damen 1",
+    "start": "2026-02-18T19:00:00+01:00",
+    "end": "2026-02-18T21:00:00+01:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
   },
   {
     "id": "training-140702-herren-1-202602232000",
@@ -1036,6 +1386,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "training-140704-damen-1-202602251900",
+    "title": "Training Damen 1",
+    "start": "2026-02-25T19:00:00+01:00",
+    "end": "2026-02-25T21:00:00+01:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
+  },
+  {
     "id": "training-140702-herren-1-202603022000",
     "title": "Training Herren 1",
     "start": "2026-03-02T20:00:00+01:00",
@@ -1062,6 +1426,20 @@
     "description": "Regeltraining",
     "url": "",
     "color": "#2563eb"
+  },
+  {
+    "id": "training-140704-damen-1-202603041900",
+    "title": "Training Damen 1",
+    "start": "2026-03-04T19:00:00+01:00",
+    "end": "2026-03-04T21:00:00+01:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
   },
   {
     "id": "training-140702-herren-1-202603092000",
@@ -1092,6 +1470,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "training-140704-damen-1-202603111900",
+    "title": "Training Damen 1",
+    "start": "2026-03-11T19:00:00+01:00",
+    "end": "2026-03-11T21:00:00+01:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
+  },
+  {
     "id": "training-140702-herren-1-202603162000",
     "title": "Training Herren 1",
     "start": "2026-03-16T20:00:00+01:00",
@@ -1118,6 +1510,20 @@
     "description": "Regeltraining",
     "url": "",
     "color": "#2563eb"
+  },
+  {
+    "id": "training-140704-damen-1-202603181900",
+    "title": "Training Damen 1",
+    "start": "2026-03-18T19:00:00+01:00",
+    "end": "2026-03-18T21:00:00+01:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
   },
   {
     "id": "training-140702-herren-1-202603232000",
@@ -1148,6 +1554,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "training-140704-damen-1-202603251900",
+    "title": "Training Damen 1",
+    "start": "2026-03-25T19:00:00+01:00",
+    "end": "2026-03-25T21:00:00+01:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
+  },
+  {
     "id": "training-140702-herren-1-202603302000",
     "title": "Training Herren 1",
     "start": "2026-03-30T20:00:00+02:00",
@@ -1174,6 +1594,20 @@
     "description": "Regeltraining",
     "url": "",
     "color": "#2563eb"
+  },
+  {
+    "id": "training-140704-damen-1-202604011900",
+    "title": "Training Damen 1",
+    "start": "2026-04-01T19:00:00+02:00",
+    "end": "2026-04-01T21:00:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
   },
   {
     "id": "training-140702-herren-1-202604062000",
@@ -1204,6 +1638,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "training-140704-damen-1-202604081900",
+    "title": "Training Damen 1",
+    "start": "2026-04-08T19:00:00+02:00",
+    "end": "2026-04-08T21:00:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
+  },
+  {
     "id": "training-140702-herren-1-202604132000",
     "title": "Training Herren 1",
     "start": "2026-04-13T20:00:00+02:00",
@@ -1230,6 +1678,20 @@
     "description": "Regeltraining",
     "url": "",
     "color": "#2563eb"
+  },
+  {
+    "id": "training-140704-damen-1-202604151900",
+    "title": "Training Damen 1",
+    "start": "2026-04-15T19:00:00+02:00",
+    "end": "2026-04-15T21:00:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
   },
   {
     "id": "training-140702-herren-1-202604202000",
@@ -1260,6 +1722,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "training-140704-damen-1-202604221900",
+    "title": "Training Damen 1",
+    "start": "2026-04-22T19:00:00+02:00",
+    "end": "2026-04-22T21:00:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
+  },
+  {
     "id": "training-140702-herren-1-202604272000",
     "title": "Training Herren 1",
     "start": "2026-04-27T20:00:00+02:00",
@@ -1286,6 +1762,20 @@
     "description": "Regeltraining",
     "url": "",
     "color": "#2563eb"
+  },
+  {
+    "id": "training-140704-damen-1-202604291900",
+    "title": "Training Damen 1",
+    "start": "2026-04-29T19:00:00+02:00",
+    "end": "2026-04-29T21:00:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
   },
   {
     "id": "training-140702-herren-1-202605042000",
@@ -1316,6 +1806,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "training-140704-damen-1-202605061900",
+    "title": "Training Damen 1",
+    "start": "2026-05-06T19:00:00+02:00",
+    "end": "2026-05-06T21:00:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
+  },
+  {
     "id": "training-140702-herren-1-202605112000",
     "title": "Training Herren 1",
     "start": "2026-05-11T20:00:00+02:00",
@@ -1342,6 +1846,20 @@
     "description": "Regeltraining",
     "url": "",
     "color": "#2563eb"
+  },
+  {
+    "id": "training-140704-damen-1-202605131900",
+    "title": "Training Damen 1",
+    "start": "2026-05-13T19:00:00+02:00",
+    "end": "2026-05-13T21:00:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
   },
   {
     "id": "training-140702-herren-1-202605182000",
@@ -1372,6 +1890,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "training-140704-damen-1-202605201900",
+    "title": "Training Damen 1",
+    "start": "2026-05-20T19:00:00+02:00",
+    "end": "2026-05-20T21:00:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
+  },
+  {
     "id": "training-140702-herren-1-202605252000",
     "title": "Training Herren 1",
     "start": "2026-05-25T20:00:00+02:00",
@@ -1398,6 +1930,20 @@
     "description": "Regeltraining",
     "url": "",
     "color": "#2563eb"
+  },
+  {
+    "id": "training-140704-damen-1-202605271900",
+    "title": "Training Damen 1",
+    "start": "2026-05-27T19:00:00+02:00",
+    "end": "2026-05-27T21:00:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
   },
   {
     "id": "training-140702-herren-1-202606012000",
@@ -1428,6 +1974,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "training-140704-damen-1-202606031900",
+    "title": "Training Damen 1",
+    "start": "2026-06-03T19:00:00+02:00",
+    "end": "2026-06-03T21:00:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
+  },
+  {
     "id": "training-140702-herren-1-202606082000",
     "title": "Training Herren 1",
     "start": "2026-06-08T20:00:00+02:00",
@@ -1454,6 +2014,20 @@
     "description": "Regeltraining",
     "url": "",
     "color": "#2563eb"
+  },
+  {
+    "id": "training-140704-damen-1-202606101900",
+    "title": "Training Damen 1",
+    "start": "2026-06-10T19:00:00+02:00",
+    "end": "2026-06-10T21:00:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
   },
   {
     "id": "training-140702-herren-1-202606152000",
@@ -1484,6 +2058,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "training-140704-damen-1-202606171900",
+    "title": "Training Damen 1",
+    "start": "2026-06-17T19:00:00+02:00",
+    "end": "2026-06-17T21:00:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
+  },
+  {
     "id": "training-140702-herren-1-202606222000",
     "title": "Training Herren 1",
     "start": "2026-06-22T20:00:00+02:00",
@@ -1510,6 +2098,20 @@
     "description": "Regeltraining",
     "url": "",
     "color": "#2563eb"
+  },
+  {
+    "id": "training-140704-damen-1-202606241900",
+    "title": "Training Damen 1",
+    "start": "2026-06-24T19:00:00+02:00",
+    "end": "2026-06-24T21:00:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "training",
+    "source": "trainings.csv",
+    "location": "BSH Fockbek",
+    "description": "Regeltraining",
+    "url": "",
+    "color": "#16a34a"
   },
   {
     "id": "training-140702-herren-1-202606292000",

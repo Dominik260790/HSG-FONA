@@ -38,3 +38,11 @@ HALLS = {
 
 DEFAULT_GAME_DURATION_MINUTES = 90
 TRAINING_CSV = "data/trainings.csv"
+WEEKEND_XLSX = "data/weekend_belegung.xlsx"
+
+WEEKEND_HALL_MAP = {
+    "Bgm.-Schadwinkel-Halle": "140704",
+    "Sporthalle Duvenstedt": "140702",
+    "Sporthalle Nübbel": "140717",
+    "Sporthalle Bergschule": "140703",
+}

@@ -140,6 +140,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "handballnet-14549003",
+    "title": "Region Mitte - gemischt F-Jugend Kreisliga Rendsburg- Hinrunde Mi, 17.09. HSG Fockbek/Nübbel/Alt Duvenstedt Uhr HSG Eide",
+    "start": "2025-09-17T17:00:00+02:00",
+    "end": "2025-09-17T18:30:00+02:00",
+    "hall_id": "140717",
+    "hall": "Sporthalle Nuebbel",
+    "type": "game",
+    "source": "handball.net",
+    "location": "Sporthalle Nuebbel",
+    "description": "Quelle: handball.net | HSG Fockbek/Nübbel/Alt Duvenstedt | Hallennummer 140717",
+    "url": "https://www.handball.net/vereine/handball4all.schleswig-holstein.6251/spielplan?dateFrom=2025-07-01&dateTo=2026-06-30",
+    "color": ""
+  },
+  {
     "id": "training-140702-damen-1-202509171900",
     "title": "Training Damen 1",
     "start": "2025-09-17T19:00:00+02:00",
@@ -224,6 +238,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "handballnet-14547009",
+    "title": "Region Mitte - männliche D-Jugend Kreisliga Rendsburg/Neumünster - Hinrunde So, 21.09. HSG Fockbek/Nübbel/Alt Duvenstedt",
+    "start": "2025-09-21T10:00:00+02:00",
+    "end": "2025-09-21T11:30:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "game",
+    "source": "handball.net",
+    "location": "BSH Fockbek",
+    "description": "Quelle: handball.net | HSG Fockbek/Nübbel/Alt Duvenstedt | Hallennummer 140704",
+    "url": "https://www.handball.net/vereine/handball4all.schleswig-holstein.6251/spielplan?dateFrom=2025-07-01&dateTo=2026-06-30",
+    "color": ""
+  },
+  {
     "id": "handballnet-14721007",
     "title": "Region Jugend - mJC-RK-3 So, 21.09. HSG Fockbek/Nübbel/Alt Duvenstedt 2 26 : 50 HSG WaBo 2011 Spielbeginn Sonntag, - Uhr",
     "start": "2025-09-21T12:00:00+02:00",
@@ -236,6 +264,34 @@
     "description": "Quelle: handball.net | HSG Fockbek/Nübbel/Alt Duvenstedt | Hallennummer 140702",
     "url": "https://www.handball.net/vereine/handball4all.schleswig-holstein.6251/spielplan?dateFrom=2025-07-01&dateTo=2026-06-30",
     "color": "#2563eb"
+  },
+  {
+    "id": "handballnet-14548006",
+    "title": "Region Mitte - männliche E-Jugend Hinrunde RD So, 21.09. HSG Fockbek/Nübbel/Alt Duvenstedt 2 6 : 28 HG Owschlag-Kropp-Te",
+    "start": "2025-09-21T13:00:00+02:00",
+    "end": "2025-09-21T14:30:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "game",
+    "source": "handball.net",
+    "location": "BSH Fockbek",
+    "description": "Quelle: handball.net | HSG Fockbek/Nübbel/Alt Duvenstedt | Hallennummer 140704",
+    "url": "https://www.handball.net/vereine/handball4all.schleswig-holstein.6251/spielplan?dateFrom=2025-07-01&dateTo=2026-06-30",
+    "color": ""
+  },
+  {
+    "id": "handballnet-14802011",
+    "title": "Nord - Frauen Kreisoberliga So, 21.09. HSG Fockbek/Nübbel/Alt Duvenstedt 2 22 : 18 HSG SZOWW 2 Spielbeginn Sonntag, - Uh",
+    "start": "2025-09-21T15:00:00+02:00",
+    "end": "2025-09-21T16:30:00+02:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "game",
+    "source": "handball.net",
+    "location": "BSH Fockbek",
+    "description": "Quelle: handball.net | HSG Fockbek/Nübbel/Alt Duvenstedt | Hallennummer 140704",
+    "url": "https://www.handball.net/vereine/handball4all.schleswig-holstein.6251/spielplan?dateFrom=2025-07-01&dateTo=2026-06-30",
+    "color": ""
   },
   {
     "id": "training-140702-herren-1-202509222000",
@@ -644,6 +700,34 @@
     "color": "#2563eb"
   },
   {
+    "id": "handballnet-14548113",
+    "title": "Region Mitte - männliche E-Jugend Kreisliga Rendsburg B2-Pokal Sa, 09.08. HSG Fockbek/Nübbel/Alt Duvenstedt 2 26 : 2 TuS",
+    "start": "2025-12-30T10:01:00+01:00",
+    "end": "2025-12-30T11:31:00+01:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "game",
+    "source": "handball.net",
+    "location": "BSH Fockbek",
+    "description": "Quelle: handball.net | HSG Fockbek/Nübbel/Alt Duvenstedt | Hallennummer 140704",
+    "url": "https://www.handball.net/vereine/handball4all.schleswig-holstein.6251/spielplan?dateFrom=2025-07-01&dateTo=2026-06-30",
+    "color": ""
+  },
+  {
+    "id": "handballnet-14548114",
+    "title": "Region Mitte - männliche E-Jugend Kreisliga Rendsburg B2-Pokal Sa, 16.08. HSG Fockbek/Nübbel/Alt Duvenstedt 2 19 : 18 TS",
+    "start": "2025-12-30T10:01:00+01:00",
+    "end": "2025-12-30T11:31:00+01:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "game",
+    "source": "handball.net",
+    "location": "BSH Fockbek",
+    "description": "Quelle: handball.net | HSG Fockbek/Nübbel/Alt Duvenstedt | Hallennummer 140704",
+    "url": "https://www.handball.net/vereine/handball4all.schleswig-holstein.6251/spielplan?dateFrom=2025-07-01&dateTo=2026-06-30",
+    "color": ""
+  },
+  {
     "id": "training-140702-damen-1-202512311900",
     "title": "Training Damen 1",
     "start": "2025-12-31T19:00:00+01:00",
@@ -656,6 +740,20 @@
     "description": "Regeltraining",
     "url": "",
     "color": "#2563eb"
+  },
+  {
+    "id": "handballnet-14548572",
+    "title": "Region Mitte - weibliche E-Jugend Kreisliga Rensburg Rückrunde A Sa, 09.08. HSG Fockbek/Nübbel/Alt Duvenstedt 19 : 14 Bü",
+    "start": "2026-01-01T08:04:00+01:00",
+    "end": "2026-01-01T09:34:00+01:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "game",
+    "source": "handball.net",
+    "location": "BSH Fockbek",
+    "description": "Quelle: handball.net | HSG Fockbek/Nübbel/Alt Duvenstedt | Hallennummer 140704",
+    "url": "https://www.handball.net/vereine/handball4all.schleswig-holstein.6251/spielplan?dateFrom=2025-07-01&dateTo=2026-06-30",
+    "color": ""
   },
   {
     "id": "training-140702-herren-1-202601052000",
@@ -714,6 +812,34 @@
     "color": "#2563eb"
   },
   {
+    "id": "handballnet-14547361",
+    "title": "Region Mitte - männliche D-Jugend Nord RD/NMS Sa, 02.08. HSG Fockbek/Nübbel/Alt Duvenstedt 2 18 : 20 TSV Vineta Audorf S",
+    "start": "2026-01-18T17:11:00+01:00",
+    "end": "2026-01-18T18:41:00+01:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "game",
+    "source": "handball.net",
+    "location": "BSH Fockbek",
+    "description": "Quelle: handball.net | HSG Fockbek/Nübbel/Alt Duvenstedt | Hallennummer 140704",
+    "url": "https://www.handball.net/vereine/handball4all.schleswig-holstein.6251/spielplan?dateFrom=2025-07-01&dateTo=2026-06-30",
+    "color": ""
+  },
+  {
+    "id": "handballnet-14547368",
+    "title": "Region Mitte - männliche D-Jugend Nord RD/NMS Sa, 16.08. HSG Fockbek/Nübbel/Alt Duvenstedt 2 28 : 11 Eckernförder MTV Sp",
+    "start": "2026-01-18T17:11:00+01:00",
+    "end": "2026-01-18T18:41:00+01:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "game",
+    "source": "handball.net",
+    "location": "BSH Fockbek",
+    "description": "Quelle: handball.net | HSG Fockbek/Nübbel/Alt Duvenstedt | Hallennummer 140704",
+    "url": "https://www.handball.net/vereine/handball4all.schleswig-holstein.6251/spielplan?dateFrom=2025-07-01&dateTo=2026-06-30",
+    "color": ""
+  },
+  {
     "id": "training-140702-herren-1-202601192000",
     "title": "Training Herren 1",
     "start": "2026-01-19T20:00:00+01:00",
@@ -754,6 +880,34 @@
     "description": "Regeltraining",
     "url": "",
     "color": "#2563eb"
+  },
+  {
+    "id": "handballnet-14547324",
+    "title": "Region Mitte - männliche D-Jugend Kreisliga RD/NMS/SE A-Pokal Mo, 01.09. HSG Fockbek/Nübbel/Alt Duvenstedt 23 : 15 SG Bo",
+    "start": "2026-01-27T18:19:00+01:00",
+    "end": "2026-01-27T19:49:00+01:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "game",
+    "source": "handball.net",
+    "location": "BSH Fockbek",
+    "description": "Quelle: handball.net | HSG Fockbek/Nübbel/Alt Duvenstedt | Hallennummer 140704",
+    "url": "https://www.handball.net/vereine/handball4all.schleswig-holstein.6251/spielplan?dateFrom=2025-07-01&dateTo=2026-06-30",
+    "color": ""
+  },
+  {
+    "id": "handballnet-14548092",
+    "title": "Region Mitte - männliche E-Jugend Kreisliga Rendsburg B1-Pokal Sa, 09.08. HSG Fockbek/Nübbel/Alt Duvenstedt 23 : 11 HSG ",
+    "start": "2026-01-27T18:28:00+01:00",
+    "end": "2026-01-27T19:58:00+01:00",
+    "hall_id": "140704",
+    "hall": "BSH Fockbek",
+    "type": "game",
+    "source": "handball.net",
+    "location": "BSH Fockbek",
+    "description": "Quelle: handball.net | HSG Fockbek/Nübbel/Alt Duvenstedt | Hallennummer 140704",
+    "url": "https://www.handball.net/vereine/handball4all.schleswig-holstein.6251/spielplan?dateFrom=2025-07-01&dateTo=2026-06-30",
+    "color": ""
   },
   {
     "id": "training-140702-damen-1-202601281900",

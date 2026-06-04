@@ -17,17 +17,17 @@ HALLS = {
     },
     "140704": {
         "name": "BSH Fockbek",
-        "slug": "BSH",
+        "slug": "bsh",
         "color": "#16a34a",
     },
     "140717": {
         "name": "Sporthalle Nuebbel",
-        "slug": "Nuebbel",
+        "slug": "nuebbel",
         "color": "#dc2626",
     },
      "140703": {
         "name": "Realschule Fockbek",
-        "slug": "RSH",
+        "slug": "realschule",
          "color": "#9333ea",
     },
         

@@ -450,7 +450,7 @@ def fetch_handballnet_games() -> list[CalendarEvent]:
 
                 seen.add(event_id)
 
-                title = extract_title(block_without_update)
+                title = extract_game_title(block_without_update, start)
 
                 events.append(
                     CalendarEvent(

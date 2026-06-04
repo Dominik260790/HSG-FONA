@@ -5,9 +5,17 @@ document.addEventListener('DOMContentLoaded', async function () {
   const response = await fetch('data/events.json?ts=' + Date.now());
   const rawEvents = await response.json();
 
+  const urlParams = new URLSearchParams(window.location.search);
+  const hallParam = urlParams.get('halle');
+
+  const preselectedHalls = hallParam
+    ? hallParam.split(',').map(value => value.trim())
+    : null;
+
   console.log('Geladene Termine:', rawEvents.length);
   console.log('Gefundene Hallen:', [...new Set(rawEvents.map(e => e.hall_id + ' - ' + e.hall))]);
   console.log('Gefundene Typen:', [...new Set(rawEvents.map(e => e.type))]);
+  console.log('Vorausgewählte Hallen:', preselectedHalls);
 
   function uniqueBy(array, keyFn) {
     const map = new Map();
@@ -94,7 +102,10 @@ document.addEventListener('DOMContentLoaded', async function () {
       input.type = 'checkbox';
       input.className = 'hall-filter';
       input.value = hall.id;
-      input.checked = true;
+
+      input.checked = preselectedHalls
+        ? preselectedHalls.includes(hall.id)
+        : true;
 
       label.appendChild(input);
       label.appendChild(document.createTextNode(' ' + hall.name));
@@ -144,6 +155,28 @@ document.addEventListener('DOMContentLoaded', async function () {
       const link = document.createElement('a');
       link.href = 'calendars/' + slugForHall(hall.id, hall.name) + '.ics';
       link.textContent = hall.name + '-iCal';
+      link.style.marginRight = '12px';
+      controlsEl.appendChild(link);
+    });
+
+    controlsEl.appendChild(document.createElement('br'));
+    controlsEl.appendChild(document.createElement('br'));
+
+    const viewTitle = document.createElement('strong');
+    viewTitle.textContent = 'Einzelansichten:';
+    controlsEl.appendChild(viewTitle);
+    controlsEl.appendChild(document.createTextNode(' '));
+
+    const allViewLink = document.createElement('a');
+    allViewLink.href = window.location.pathname;
+    allViewLink.textContent = 'Alle Hallen';
+    allViewLink.style.marginRight = '12px';
+    controlsEl.appendChild(allViewLink);
+
+    halls.forEach(hall => {
+      const link = document.createElement('a');
+      link.href = window.location.pathname + '?halle=' + encodeURIComponent(hall.id);
+      link.textContent = hall.name;
       link.style.marginRight = '12px';
       controlsEl.appendChild(link);
     });

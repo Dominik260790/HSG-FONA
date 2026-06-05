@@ -16212,6 +16212,20 @@
     "color": "#9333ea"
   },
   {
+    "id": "extra-camp-140702-trainingslager-1-frauen-202607311100",
+    "title": "Trainingslager 1. Frauen",
+    "start": "2026-07-31T11:00:00+02:00",
+    "end": "2026-07-31T23:59:00+02:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "camp",
+    "source": "google-form-extra-events",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "",
+    "url": "",
+    "color": "#2563eb"
+  },
+  {
     "id": "training-140702-minis-ad-202607311500",
     "title": "Training Minis AD",
     "start": "2026-07-31T15:00:00+02:00",
@@ -16404,6 +16418,34 @@
     "source": "trainings.csv",
     "location": "Sporthalle Alt Duvenstedt",
     "description": "optional laut Plan",
+    "url": "",
+    "color": "#2563eb"
+  },
+  {
+    "id": "extra-camp-140702-trainingslager-1-frauen-202608010800",
+    "title": "Trainingslager 1. Frauen",
+    "start": "2026-08-01T08:00:00+02:00",
+    "end": "2026-08-01T23:59:00+02:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "camp",
+    "source": "google-form-extra-events",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "",
+    "url": "",
+    "color": "#2563eb"
+  },
+  {
+    "id": "extra-camp-140702-trainingslager-1-frauen-202608020800",
+    "title": "Trainingslager 1. Frauen",
+    "start": "2026-08-02T08:00:00+02:00",
+    "end": "2026-08-02T18:00:00+02:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "camp",
+    "source": "google-form-extra-events",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "",
     "url": "",
     "color": "#2563eb"
   },

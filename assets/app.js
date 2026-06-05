@@ -2,8 +2,29 @@ document.addEventListener('DOMContentLoaded', async function () {
   const calendarEl = document.getElementById('calendar');
   const controlsEl = document.querySelector('.controls');
 
-  const response = await fetch('data/events.json?ts=' + Date.now());
-  const rawEvents = await response.json();
+  if (!calendarEl) {
+    console.error('Kalender-Element #calendar wurde nicht gefunden.');
+    return;
+  }
+
+  let rawEvents = [];
+
+  try {
+    const response = await fetch('data/events.json?ts=' + Date.now());
+
+    if (!response.ok) {
+      throw new Error('events.json konnte nicht geladen werden: HTTP ' + response.status);
+    }
+
+    rawEvents = await response.json();
+  } catch (error) {
+    console.error('Fehler beim Laden von events.json:', error);
+
+    if (controlsEl) {
+      controlsEl.innerHTML =
+        '<strong>Hinweis:</strong> Termine konnten gerade nicht geladen werden. Der Kalender wird leer angezeigt.';
+    }
+  }
 
   const urlParams = new URLSearchParams(window.location.search);
   const hallParam = urlParams.get('halle');
@@ -44,7 +65,17 @@ document.addEventListener('DOMContentLoaded', async function () {
       tournament: 'Turnier'
     };
 
-    return labels[type] || type;
+    return labels[type] || type || 'Termin';
+  }
+
+  function displayTitle(e) {
+    let title = String(e.title || 'Termin');
+
+    title = title.replace(/^Training\s+/i, '');
+    title = title.replace(/^Belegt:\s*/i, '');
+    title = title.replace(/^Belegt\s*/i, '');
+
+    return title.trim();
   }
 
   function slugForHall(hallId, hallName) {
@@ -60,7 +91,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       return known[hallId];
     }
 
-    return hallName
+    return String(hallName || hallId || 'halle')
       .toLowerCase()
       .replaceAll('ä', 'ae')
       .replaceAll('ö', 'oe')
@@ -74,8 +105,8 @@ document.addEventListener('DOMContentLoaded', async function () {
     rawEvents
       .filter(e => e.hall_id && e.hall)
       .map(e => ({
-        id: e.hall_id,
-        name: e.hall
+        id: String(e.hall_id),
+        name: String(e.hall)
       })),
     h => h.id
   ).sort((a, b) => a.name.localeCompare(b.name, 'de'));
@@ -84,19 +115,27 @@ document.addEventListener('DOMContentLoaded', async function () {
     rawEvents
       .filter(e => e.type)
       .map(e => ({
-        id: e.type,
+        id: String(e.type),
         name: typeLabel(e.type)
       })),
     t => t.id
   ).sort((a, b) => a.name.localeCompare(b.name, 'de'));
 
   function buildControls() {
+    if (!controlsEl) {
+      return;
+    }
+
     controlsEl.innerHTML = '';
 
     const hallTitle = document.createElement('strong');
     hallTitle.textContent = 'Hallen:';
     controlsEl.appendChild(hallTitle);
     controlsEl.appendChild(document.createTextNode(' '));
+
+    if (halls.length === 0) {
+      controlsEl.appendChild(document.createTextNode('Keine Hallen geladen'));
+    }
 
     halls.forEach(hall => {
       const label = document.createElement('label');
@@ -124,6 +163,10 @@ document.addEventListener('DOMContentLoaded', async function () {
     typeTitle.textContent = 'Terminarten:';
     controlsEl.appendChild(typeTitle);
     controlsEl.appendChild(document.createTextNode(' '));
+
+    if (types.length === 0) {
+      controlsEl.appendChild(document.createTextNode('Keine Terminarten geladen'));
+    }
 
     types.forEach(type => {
       const label = document.createElement('label');
@@ -196,11 +239,11 @@ document.addEventListener('DOMContentLoaded', async function () {
     const selectedTypes = selectedValues('.type-filter');
 
     return rawEvents
-      .filter(e => selectedHalls.includes(e.hall_id))
-      .filter(e => selectedTypes.includes(e.type))
+      .filter(e => selectedHalls.length === 0 || selectedHalls.includes(String(e.hall_id)))
+      .filter(e => selectedTypes.length === 0 || selectedTypes.includes(String(e.type)))
       .map(e => ({
         id: e.id,
-        title: e.title + ' · ' + e.hall,
+        title: displayTitle(e),
         start: e.start,
         end: e.end,
         color: e.color || undefined,
@@ -226,14 +269,16 @@ document.addEventListener('DOMContentLoaded', async function () {
     },
     events: filteredEvents(),
     eventClick: function(info) {
-      info.jsEvent.preventDefault();
+      if (info.jsEvent) {
+        info.jsEvent.preventDefault();
+      }
 
-      const e = info.event.extendedProps;
+      const e = info.event.extendedProps || {};
 
       alert([
-        info.event.title,
-        'Halle: ' + e.hall,
-        'Typ: ' + typeLabel(e.type),
+        displayTitle(e),
+        e.hall ? 'Halle: ' + e.hall : '',
+        e.type ? 'Typ: ' + typeLabel(e.type) : '',
         e.description ? 'Info: ' + e.description : '',
         e.url ? 'Quelle: ' + e.url : ''
       ].filter(Boolean).join('\n'));

@@ -1,7 +1,7 @@
 type,team,hall_id,weekday,start_time,end_time,date_from,date_to,notes
-training,MiniMini AD,140702,MO,15:00,16:00,2026-05-01,2027-04-30,
-
-training,mB,140702,MO,17:00,18:30,2026-05-01,2027-04-30,
+training,MiniMini AD,140702,MO,14:30,15:30,2026-05-01,2027-04-30,
+ 
+training,mB,140702,MO,16:30,18:00,2026-05-01,2027-04-30,
 
 training,Athletik Wulf,140702,MO,19:00,21:00,2026-05-01,2027-04-30,halbe Halle laut Fußnote
 

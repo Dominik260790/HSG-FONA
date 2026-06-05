@@ -16016,6 +16016,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "extra-event-140702-1-maenner-202607251130",
+    "title": "1. Männer",
+    "start": "2026-07-25T11:30:00+02:00",
+    "end": "2026-07-25T18:00:00+02:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "event",
+    "source": "google-form-extra-events",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "",
+    "url": "",
+    "color": "#2563eb"
+  },
+  {
     "id": "training-140702-minimini-ad-202607271500",
     "title": "Training MiniMini AD",
     "start": "2026-07-27T15:00:00+02:00",
@@ -19040,6 +19054,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "extra-event-140702-1-maenner-202608151130",
+    "title": "1. Männer",
+    "start": "2026-08-15T11:30:00+02:00",
+    "end": "2026-08-15T18:00:00+02:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "event",
+    "source": "google-form-extra-events",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "",
+    "url": "",
+    "color": "#2563eb"
+  },
+  {
     "id": "training-140702-minimini-ad-202608171500",
     "title": "Training MiniMini AD",
     "start": "2026-08-17T15:00:00+02:00",
@@ -21024,6 +21052,20 @@
     "source": "trainings.csv",
     "location": "Sporthalle Alt Duvenstedt",
     "description": "optional laut Plan",
+    "url": "",
+    "color": "#2563eb"
+  },
+  {
+    "id": "extra-event-140702-1-maenner-202608291130",
+    "title": "1. Männer",
+    "start": "2026-08-29T11:30:00+02:00",
+    "end": "2026-08-29T18:00:00+02:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "event",
+    "source": "google-form-extra-events",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "",
     "url": "",
     "color": "#2563eb"
   },

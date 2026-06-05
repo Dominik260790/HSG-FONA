@@ -62,7 +62,7 @@ EXTRA_HALL_MAP = {
     "Sporthalle Nübbel": "140717",
     "Sporthalle Nuebbel": "140717",
     "Nübbel": "140717",
-    "Nuebbel": "140717",,
+    "Nuebbel": "140717",
 }
 
 EXTRA_TYPE_MAP = {

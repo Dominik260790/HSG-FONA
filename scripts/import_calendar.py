@@ -1,5 +1,6 @@
 import csv
 import html
+import io
 import json
 import re
 from dataclasses import dataclass, asdict
@@ -33,6 +34,13 @@ try:
 except ImportError:
     WEEKEND_XLSX = ""
     WEEKEND_HALL_MAP = {}
+
+try:
+    from config import EXTRA_EVENTS_CSV_URL, EXTRA_HALL_MAP, EXTRA_TYPE_MAP
+except ImportError:
+    EXTRA_EVENTS_CSV_URL = ""
+    EXTRA_HALL_MAP = {}
+    EXTRA_TYPE_MAP = {}
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -126,7 +134,6 @@ def parse_excel_time(value) -> time | None:
         return value.time().replace(tzinfo=None)
 
     if isinstance(value, (int, float)):
-        # Excel stores times as fractions of a day.
         if 0 <= value < 1:
             total_minutes = round(value * 24 * 60)
             hh = total_minutes // 60
@@ -322,7 +329,6 @@ def extract_club_team_number_and_opponent(block: str) -> tuple[str, str]:
 
 def extract_team_class(block: str, team_number: str) -> str:
     text = strip_schedule_metadata(block)
-
     club_match = re.search(re.escape(CLUB_NAME), text, flags=re.I)
 
     if club_match:
@@ -405,7 +411,6 @@ def extract_team_class(block: str, team_number: str) -> str:
         return with_number("Maxis")
 
     fallback = prefix
-
     fallback = re.sub(r"\bRegion\s+(Jugend|Erwachsene|Mitte|Nord|Süd|Sued)\b", " ", fallback, flags=re.I)
     fallback = re.sub(r"\bSchleswig-Holstein\b", " ", fallback, flags=re.I)
     fallback = re.sub(r"\bKreisliga\b|\bKreisoberliga\b|\bOberliga\b|\bRegionsliga\b|\bPokal\b", " ", fallback, flags=re.I)
@@ -464,7 +469,6 @@ def fetch_handballnet_games() -> list[CalendarEvent]:
         response.raise_for_status()
 
         soup = BeautifulSoup(response.text, "html.parser")
-
         text_blocks: list[str] = []
 
         for tag in soup.find_all(["article", "section", "li", "tr", "div"]):
@@ -662,11 +666,6 @@ def find_weekend_hall_columns(ws) -> list[dict]:
                         print(f"WARNING: weekend hall maps to unknown hall_id skipped: {excel_hall_name} -> {hall_id}")
                         continue
 
-                    # In the template:
-                    # BSH text col = 4, time col = 2
-                    # Duvenstedt text col = 7, time col = 5
-                    # Nübbel text col = 10, time col = 8
-                    # Bergschule text col = 13, time col = 11
                     hall_columns.append(
                         {
                             "excel_name": excel_hall_name,
@@ -677,6 +676,7 @@ def find_weekend_hall_columns(ws) -> list[dict]:
                     )
 
     unique = {}
+
     for item in hall_columns:
         unique[(item["hall_id"], item["text_col"])] = item
 
@@ -741,6 +741,16 @@ def find_weekend_date_sections(ws) -> list[dict]:
     return sections
 
 
+def is_meaningful_cell(value) -> bool:
+    if value is None:
+        return False
+
+    if isinstance(value, str):
+        return clean_text(value) != ""
+
+    return True
+
+
 def collect_weekend_text_lines(ws, rows: list[int], time_col: int, text_col: int) -> list[str]:
     lines: list[str] = []
 
@@ -749,8 +759,8 @@ def collect_weekend_text_lines(ws, rows: list[int], time_col: int, text_col: int
             ws.cell(row, text_col).value,
         ]
 
-        # Notes sometimes appear inside the time column, e.g. "Feiertag Vergabe nur ...".
         time_value = ws.cell(row, time_col).value
+
         if parse_excel_time(time_value) is None:
             values.append(time_value)
 
@@ -848,8 +858,10 @@ def load_weekend_excel_events() -> list[CalendarEvent]:
                 rows = list(range(start_row, end_row + 1))
 
                 time_rows = []
+
                 for row in rows:
                     parsed_time = parse_excel_time(ws.cell(row, time_col).value)
+
                     if parsed_time is not None:
                         time_rows.append((row, parsed_time))
 
@@ -865,7 +877,9 @@ def load_weekend_excel_events() -> list[CalendarEvent]:
                             end_t = time_rows[idx + 1][1]
                         else:
                             chunk_end = end_row
-                            end_dt_tmp = datetime.combine(day_date, start_t) + timedelta(minutes=WEEKEND_DEFAULT_DURATION_MINUTES)
+                            end_dt_tmp = datetime.combine(day_date, start_t) + timedelta(
+                                minutes=WEEKEND_DEFAULT_DURATION_MINUTES
+                            )
                             end_t = end_dt_tmp.time()
 
                         chunk_rows = list(range(chunk_start, chunk_end + 1))
@@ -882,7 +896,10 @@ def load_weekend_excel_events() -> list[CalendarEvent]:
                         if end <= start:
                             end = start + timedelta(minutes=WEEKEND_DEFAULT_DURATION_MINUTES)
 
-                        event_id = f"weekend-{hall_id}-{safe_id(ws.title)}-{day_date.isoformat()}-{start:%H%M}-{safe_id(title)}"
+                        event_id = (
+                            f"weekend-{hall_id}-{safe_id(ws.title)}-"
+                            f"{day_date.isoformat()}-{start:%H%M}-{safe_id(title)}"
+                        )
 
                         if event_id in seen:
                             continue
@@ -922,7 +939,8 @@ def load_weekend_excel_events() -> list[CalendarEvent]:
                     else:
                         start_t = WEEKEND_DEFAULT_START
                         end_t = (
-                            datetime.combine(day_date, start_t) + timedelta(minutes=WEEKEND_DEFAULT_DURATION_MINUTES)
+                            datetime.combine(day_date, start_t)
+                            + timedelta(minutes=WEEKEND_DEFAULT_DURATION_MINUTES)
                         ).time()
 
                     start = datetime.combine(day_date, start_t, tzinfo=BERLIN)
@@ -956,6 +974,273 @@ def load_weekend_excel_events() -> list[CalendarEvent]:
                     )
 
     print(f"weekend excel sheets parsed: {len(workbook.worksheets)}")
+    return sorted(events, key=lambda e: e.start)
+
+
+def normalize_extra_type(value: str) -> str:
+    value = clean_text(value)
+
+    if not value:
+        return "event"
+
+    if value in EXTRA_TYPE_MAP:
+        return EXTRA_TYPE_MAP[value]
+
+    lower = value.lower()
+
+    if lower in {"event", "camp", "tournament", "blocked"}:
+        return lower
+
+    if "trainingslager" in lower:
+        return "camp"
+
+    if "turnier" in lower:
+        return "tournament"
+
+    if "belegt" in lower or "sperr" in lower:
+        return "blocked"
+
+    return "event"
+
+
+def normalize_extra_hall_id(value: str) -> str:
+    value = clean_text(value)
+
+    if not value:
+        return ""
+
+    if value in HALLS:
+        return value
+
+    if value in EXTRA_HALL_MAP:
+        return EXTRA_HALL_MAP[value]
+
+    lower_value = value.lower()
+
+    for hall_name, hall_id in EXTRA_HALL_MAP.items():
+        if clean_text(hall_name).lower() == lower_value:
+            return hall_id
+
+    return value
+
+
+def parse_extra_date(value: str) -> date:
+    value = clean_text(value)
+
+    formats = [
+        "%Y-%m-%d",
+        "%d.%m.%Y",
+        "%d.%m.%y",
+        "%m/%d/%Y",
+        "%d/%m/%Y",
+    ]
+
+    for fmt in formats:
+        try:
+            return datetime.strptime(value, fmt).date()
+        except ValueError:
+            pass
+
+    raise ValueError(f"Unsupported date format: {value}")
+
+
+def parse_extra_time(value: str) -> time:
+    value = clean_text(value)
+    value = value.replace(" Uhr", "")
+    value = value.replace("Uhr", "")
+    value = value.strip()
+
+    formats = [
+        "%H:%M:%S",
+        "%H:%M",
+        "%H.%M",
+    ]
+
+    for fmt in formats:
+        try:
+            return datetime.strptime(value, fmt).time()
+        except ValueError:
+            pass
+
+    raise ValueError(f"Unsupported time format: {value}")
+
+
+def parse_extra_datetime(value: str) -> datetime:
+    value = clean_text(value)
+
+    formats = [
+        "%Y-%m-%d %H:%M",
+        "%Y-%m-%dT%H:%M",
+        "%d.%m.%Y %H:%M",
+        "%d.%m.%y %H:%M",
+        "%m/%d/%Y %H:%M",
+        "%d/%m/%Y %H:%M",
+    ]
+
+    for fmt in formats:
+        try:
+            parsed = datetime.strptime(value, fmt)
+            return parsed.replace(tzinfo=BERLIN)
+        except ValueError:
+            pass
+
+    raise ValueError(f"Unsupported datetime format: {value}")
+
+
+def get_extra_value(row: dict, *possible_names: str, default: str = "") -> str:
+    normalized_row = {
+        clean_text(str(key)).lower(): value
+        for key, value in row.items()
+        if key is not None
+    }
+
+    for name in possible_names:
+        normalized_name = clean_text(name).lower()
+
+        if normalized_name in normalized_row:
+            value = normalized_row[normalized_name]
+
+            if value is not None and clean_text(str(value)) != "":
+                return clean_text(str(value))
+
+    return default
+
+
+def read_extra_csv_rows_from_url(url: str) -> list[dict]:
+    if not url:
+        return []
+
+    headers = {
+        "User-Agent": "Mozilla/5.0 hallenkalender-import/1.0 (+https://github.com/)",
+        "Accept-Language": "de-DE,de;q=0.9,en;q=0.8",
+    }
+
+    response = requests.get(url, headers=headers, timeout=30)
+    response.raise_for_status()
+
+    content = response.content.decode("utf-8-sig")
+
+    if content.lstrip().startswith("<"):
+        print("WARNING: extra events URL returned HTML instead of CSV. Check Google Sheet publishing/sharing.")
+        return []
+
+    reader = csv.DictReader(io.StringIO(content))
+    return list(reader)
+
+
+def load_extra_events() -> list[CalendarEvent]:
+    if not EXTRA_EVENTS_CSV_URL:
+        print("extra events: disabled, EXTRA_EVENTS_CSV_URL not configured")
+        return []
+
+    rows = read_extra_csv_rows_from_url(EXTRA_EVENTS_CSV_URL)
+
+    if not rows:
+        print("extra events: no rows found")
+        return []
+
+    events: list[CalendarEvent] = []
+
+    for row in rows:
+        title = get_extra_value(
+            row,
+            "Titel",
+            "title",
+            "Termintitel",
+            "Name",
+        )
+
+        if not title:
+            print(f"WARNING: extra event without title skipped: {row}")
+            continue
+
+        hall_raw = get_extra_value(
+            row,
+            "Halle",
+            "hall",
+            "hall_id",
+            "Hallennummer",
+        )
+
+        hall_id = normalize_extra_hall_id(hall_raw)
+
+        if hall_id not in HALLS:
+            print(f"WARNING: unknown hall in extra event skipped: {hall_raw} -> {hall_id}")
+            continue
+
+        type_raw = get_extra_value(
+            row,
+            "Art",
+            "type",
+            "Typ",
+            "Terminart",
+            default="Zusatztermin",
+        )
+
+        event_type = normalize_extra_type(type_raw)
+
+        notes = get_extra_value(
+            row,
+            "Notiz",
+            "notes",
+            "Info",
+            "Beschreibung",
+            default="",
+        )
+
+        start_raw = get_extra_value(row, "start", "Start", "Beginn")
+        end_raw = get_extra_value(row, "end", "Ende", "End")
+
+        if start_raw and end_raw:
+            try:
+                start = parse_extra_datetime(start_raw)
+                end = parse_extra_datetime(end_raw)
+            except ValueError as exc:
+                print(f"WARNING: extra event datetime parse failed: {exc} | row={row}")
+                continue
+        else:
+            date_raw = get_extra_value(row, "Datum", "date", "Tag")
+            start_time_raw = get_extra_value(row, "Startzeit", "start_time", "Start")
+            end_time_raw = get_extra_value(row, "Endzeit", "end_time", "Ende")
+
+            if not date_raw or not start_time_raw or not end_time_raw:
+                print(f"WARNING: extra event missing date/start/end skipped: {row}")
+                continue
+
+            try:
+                event_date = parse_extra_date(date_raw)
+                start_time = parse_extra_time(start_time_raw)
+                end_time = parse_extra_time(end_time_raw)
+            except ValueError as exc:
+                print(f"WARNING: extra event date/time parse failed: {exc} | row={row}")
+                continue
+
+            start = datetime.combine(event_date, start_time, tzinfo=BERLIN)
+            end = datetime.combine(event_date, end_time, tzinfo=BERLIN)
+
+        if end <= start:
+            print(f"WARNING: extra event end before start skipped: {row}")
+            continue
+
+        hall = HALLS[hall_id]
+        event_id = f"extra-{event_type}-{hall_id}-{safe_id(title)}-{start:%Y%m%d%H%M}"
+
+        events.append(
+            CalendarEvent(
+                id=event_id,
+                title=title,
+                start=to_iso(start),
+                end=to_iso(end),
+                hall_id=hall_id,
+                hall=hall["name"],
+                type=event_type,
+                source="google-form-extra-events",
+                location=hall["name"],
+                description=notes,
+                color=hall.get("color", ""),
+            )
+        )
+
     return sorted(events, key=lambda e: e.start)
 
 
@@ -1031,7 +1316,10 @@ def main() -> None:
     weekend_events = load_weekend_excel_events()
     print(f"weekend excel events: {len(weekend_events)}")
 
-    events = sorted(games + trainings + weekend_events, key=lambda e: e.start)
+    extra_events = load_extra_events()
+    print(f"extra events: {len(extra_events)}")
+
+    events = sorted(games + trainings + weekend_events + extra_events, key=lambda e: e.start)
 
     (ROOT / "data" / "events.json").write_text(
         json.dumps([asdict(e) for e in events], ensure_ascii=False, indent=2),

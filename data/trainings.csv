@@ -1,19 +1,17 @@
 type,team,hall_id,weekday,start_time,end_time,date_from,date_to,notes
 training,MiniMini AD,140702,MO,15:00,16:00,2026-05-01,2027-04-30,
-blocked,belegt,140702,MO,16:00,17:00,2026-05-01,2027-04-30,externe/sonstige Hallenbelegung laut Plan
+
 training,mB,140702,MO,17:00,18:30,2026-05-01,2027-04-30,
-blocked,belegt,140702,MO,18:30,19:00,2026-05-01,2027-04-30,externe/sonstige Hallenbelegung laut Plan
+
 training,Athletik Wulf,140702,MO,19:00,21:00,2026-05-01,2027-04-30,halbe Halle laut Fußnote
-blocked,belegt,140702,MO,21:00,22:00,2026-05-01,2027-04-30,externe/sonstige Hallenbelegung laut Plan
-blocked,belegt,140702,TU,15:00,19:00,2026-05-01,2027-04-30,externe/sonstige Hallenbelegung laut Plan
+
 training,1. Frauen,140702,TU,19:00,20:30,2026-05-01,2027-04-30,
 training,3. Frauen,140702,TU,20:30,22:00,2026-05-01,2027-04-30,
-blocked,belegt,140702,WE,15:00,16:00,2026-05-01,2027-04-30,externe/sonstige Hallenbelegung laut Plan
+
 training,mE,140702,WE,16:00,17:30,2026-05-01,2027-04-30,
 training,wB1 (Region),140702,WE,17:30,19:00,2026-05-01,2027-04-30,
 training,wA 2 (FONA),140702,WE,19:00,20:30,2026-05-01,2027-04-30,
-blocked,belegt,140702,TH,15:00,16:30,2026-05-01,2027-04-30,externe/sonstige Hallenbelegung laut Plan
-blocked,belegt,140702,TH,17:00,19:15,2026-05-01,2027-04-30,laut Fußnote: bis 19:15 Uhr
+
 training,1. Männer,140702,TH,19:15,21:00,2026-05-01,2027-04-30,Start 19:15 wegen Fußnote belegt bis 19:15 Uhr; bitte prüfen
 training,Minis AD,140702,FR,15:00,16:00,2026-05-01,2027-04-30,
 training,Maxis AD + FN,140702,FR,16:00,17:00,2026-05-01,2027-04-30,
@@ -41,7 +39,6 @@ blocked,belegt,140704,FR,15:00,15:30,2026-05-01,2027-04-30,externe/sonstige Hall
 training,mE,140704,FR,15:30,17:00,2026-05-01,2027-04-30,
 training,wC1,140704,FR,17:00,18:30,2026-05-01,2027-04-30,
 training,wB2 (OKT)*,140704,FR,18:30,20:00,2026-05-01,2027-04-30,"laut Fußnote: bis Fußballer kommen BSH, danach AD"
-blocked,belegt,KRUMMENORT,MO,19:00,21:00,2026-05-01,2027-04-30,Krummenort-Zusatzblock aus PDF; Wochentag bitte prüfen
 training,wD,140717,MO,16:00,17:30,2026-05-01,2027-04-30,
 blocked,belegt,140717,MO,17:30,18:30,2026-05-01,2027-04-30,externe/sonstige Hallenbelegung laut Plan
 blocked,belegt,140717,MO,20:00,22:00,2026-05-01,2027-04-30,externe/sonstige Hallenbelegung laut Plan

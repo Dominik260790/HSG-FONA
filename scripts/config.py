@@ -46,7 +46,8 @@ WEEKEND_HALL_MAP = {
     "Sporthalle Nübbel": "140717",
     "Sporthalle Bergschule": "140703",
 }
-EXTRA_EVENTS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQDHmRhn3c3B1ozudVJ3BL7zHvACLcVfG9pcz_s6JpQXgyxShNGSAq4xYAjrCDFoguM03-VBjaXl3gh/pubhtml"
+EXTRA_EVENTS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQDHmRhn3c3B1ozudVJ3BL7zHvACLcVfG9pcz_s6JpQXgyxShNGSAq4xYAjrCDFoguM03-VBjaXl3gh/pub?output=csv"
+
 
 EXTRA_HALL_MAP = {
     "Sporthalle Alt Duvenstedt": "140702",

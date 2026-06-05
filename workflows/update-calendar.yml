@@ -3,7 +3,7 @@ name: Update hall calendar
 on:
   workflow_dispatch:
   schedule:
-    - cron: "15 * * * *"
+    - cron: "*/15 * * * *"
   push:
     branches:
       - main

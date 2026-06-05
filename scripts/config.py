@@ -46,3 +46,28 @@ WEEKEND_HALL_MAP = {
     "Sporthalle Nübbel": "140717",
     "Sporthalle Bergschule": "140703",
 }
+EXTRA_EVENTS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQDHmRhn3c3B1ozudVJ3BL7zHvACLcVfG9pcz_s6JpQXgyxShNGSAq4xYAjrCDFoguM03-VBjaXl3gh/pubhtml"
+
+EXTRA_HALL_MAP = {
+    "Sporthalle Alt Duvenstedt": "140702",
+    "Alt Duvenstedt": "140702",
+
+    "BSH Fockbek": "140704",
+    "Bgm.-Schadwinkel-Halle": "140704",
+
+    "Realschule Fockbek": "140703",
+    "Sporthalle Bergschule": "140703",
+    "Bergschule": "140703",
+
+    "Sporthalle Nübbel": "140717",
+    "Sporthalle Nuebbel": "140717",
+    "Nübbel": "140717",
+    "Nuebbel": "140717",,
+}
+
+EXTRA_TYPE_MAP = {
+    "Zusatztermin": "event",
+    "Trainingslager": "camp",
+    "Turnier": "tournament",
+    "Belegt": "blocked",
+}

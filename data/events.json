@@ -1,5 +1,19 @@
 [
   {
+    "id": "blocked-140702-zumba-202509061000",
+    "title": "Belegt: Zumba",
+    "start": "2025-09-06T10:00:00+02:00",
+    "end": "2025-09-06T11:30:00+02:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
+    "color": "#2563eb"
+  },
+  {
     "id": "weekend-140704-kw37-2025-09-12-tischtennis-landesmeisterschaften-aufbau",
     "title": "Tischtennis / Landesmeisterschaften / Aufbau",
     "start": "2025-09-12T08:00:00+02:00",
@@ -26,6 +40,20 @@
     "description": "Quelle: data/weekend_belegung.xlsx | Blatt: KW37 | Excel-Halle: Bgm.-Schadwinkel-Halle | keine konkrete Uhrzeit in Excel gefunden",
     "url": "",
     "color": "#16a34a"
+  },
+  {
+    "id": "blocked-140702-zumba-202509131000",
+    "title": "Belegt: Zumba",
+    "start": "2025-09-13T10:00:00+02:00",
+    "end": "2025-09-13T11:30:00+02:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
+    "color": "#2563eb"
   },
   {
     "id": "handballnet-14726004",
@@ -124,6 +152,20 @@
     "description": "Quelle: handball.net | HSG Fockbek/Nübbel/Alt Duvenstedt | Hallennummer 140717 | Spielnummer 14549003",
     "url": "https://www.handball.net/vereine/handball4all.schleswig-holstein.6251/spielplan?dateFrom=2025-07-01&dateTo=2026-06-30",
     "color": "#dc2626"
+  },
+  {
+    "id": "blocked-140702-zumba-202509201000",
+    "title": "Belegt: Zumba",
+    "start": "2025-09-20T10:00:00+02:00",
+    "end": "2025-09-20T11:30:00+02:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
+    "color": "#2563eb"
   },
   {
     "id": "handballnet-14707003",
@@ -263,6 +305,20 @@
     "location": "Sporthalle Alt Duvenstedt",
     "description": "Quelle: handball.net | HSG Fockbek/Nübbel/Alt Duvenstedt | Hallennummer 140702 | Spielnummer 14805117",
     "url": "https://www.handball.net/vereine/handball4all.schleswig-holstein.6251/spielplan?dateFrom=2025-07-01&dateTo=2026-06-30&page=2",
+    "color": "#2563eb"
+  },
+  {
+    "id": "blocked-140702-zumba-202509271000",
+    "title": "Belegt: Zumba",
+    "start": "2025-09-27T10:00:00+02:00",
+    "end": "2025-09-27T11:30:00+02:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
     "color": "#2563eb"
   },
   {
@@ -462,6 +518,20 @@
     "color": "#16a34a"
   },
   {
+    "id": "blocked-140702-zumba-202510041000",
+    "title": "Belegt: Zumba",
+    "start": "2025-10-04T10:00:00+02:00",
+    "end": "2025-10-04T11:30:00+02:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
+    "color": "#2563eb"
+  },
+  {
     "id": "handballnet-14547002",
     "title": "mJD 2 · TSV Vineta Audorf",
     "start": "2025-10-05T10:00:00+02:00",
@@ -502,6 +572,20 @@
     "description": "Quelle: handball.net | HSG Fockbek/Nübbel/Alt Duvenstedt | Hallennummer 140704 | Spielnummer 14548019",
     "url": "https://www.handball.net/vereine/handball4all.schleswig-holstein.6251/spielplan?dateFrom=2025-07-01&dateTo=2026-06-30&page=2",
     "color": "#16a34a"
+  },
+  {
+    "id": "blocked-140702-zumba-202510111000",
+    "title": "Belegt: Zumba",
+    "start": "2025-10-11T10:00:00+02:00",
+    "end": "2025-10-11T11:30:00+02:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
+    "color": "#2563eb"
   },
   {
     "id": "handballnet-14006714",
@@ -616,6 +700,20 @@
     "color": "#16a34a"
   },
   {
+    "id": "blocked-140702-zumba-202510181000",
+    "title": "Belegt: Zumba",
+    "start": "2025-10-18T10:00:00+02:00",
+    "end": "2025-10-18T11:30:00+02:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
+    "color": "#2563eb"
+  },
+  {
     "id": "handballnet-14805104",
     "title": "4. Frauen · TSV Schwarz-Rot Schülp",
     "start": "2025-10-19T15:00:00+02:00",
@@ -627,6 +725,20 @@
     "location": "Sporthalle Alt Duvenstedt",
     "description": "Quelle: handball.net | HSG Fockbek/Nübbel/Alt Duvenstedt | Hallennummer 140702 | Spielnummer 14805104",
     "url": "https://www.handball.net/vereine/handball4all.schleswig-holstein.6251/spielplan?dateFrom=2025-07-01&dateTo=2026-06-30&page=3",
+    "color": "#2563eb"
+  },
+  {
+    "id": "blocked-140702-zumba-202510251000",
+    "title": "Belegt: Zumba",
+    "start": "2025-10-25T10:00:00+02:00",
+    "end": "2025-10-25T11:30:00+02:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
     "color": "#2563eb"
   },
   {
@@ -642,6 +754,34 @@
     "description": "Quelle: data/weekend_belegung.xlsx | Blatt: KW44 | Excel-Halle: Bgm.-Schadwinkel-Halle | keine konkrete Uhrzeit in Excel gefunden",
     "url": "",
     "color": "#16a34a"
+  },
+  {
+    "id": "blocked-140702-zumba-202511011000",
+    "title": "Belegt: Zumba",
+    "start": "2025-11-01T10:00:00+01:00",
+    "end": "2025-11-01T11:30:00+01:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
+    "color": "#2563eb"
+  },
+  {
+    "id": "blocked-140702-zumba-202511081000",
+    "title": "Belegt: Zumba",
+    "start": "2025-11-08T10:00:00+01:00",
+    "end": "2025-11-08T11:30:00+01:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
+    "color": "#2563eb"
   },
   {
     "id": "handballnet-14726031",
@@ -826,6 +966,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "blocked-140702-zumba-202511151000",
+    "title": "Belegt: Zumba",
+    "start": "2025-11-15T10:00:00+01:00",
+    "end": "2025-11-15T11:30:00+01:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
+    "color": "#2563eb"
+  },
+  {
     "id": "handballnet-14547025",
     "title": "mJD 2 · SVT Neumünster",
     "start": "2025-11-15T13:00:00+01:00",
@@ -966,6 +1120,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "blocked-140702-zumba-202511221000",
+    "title": "Belegt: Zumba",
+    "start": "2025-11-22T10:00:00+01:00",
+    "end": "2025-11-22T11:30:00+01:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
+    "color": "#2563eb"
+  },
+  {
     "id": "handballnet-14713025",
     "title": "wJB-RK-1 2 · HSG Gettorf/Osdorf",
     "start": "2025-11-22T15:00:00+01:00",
@@ -1078,6 +1246,20 @@
     "color": "#16a34a"
   },
   {
+    "id": "blocked-140702-zumba-202511291000",
+    "title": "Belegt: Zumba",
+    "start": "2025-11-29T10:00:00+01:00",
+    "end": "2025-11-29T11:30:00+01:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
+    "color": "#2563eb"
+  },
+  {
     "id": "handballnet-14713040",
     "title": "wJB-RK-1 2 · HSG Angeln",
     "start": "2025-11-29T13:00:00+01:00",
@@ -1160,6 +1342,20 @@
     "description": "Quelle: handball.net | HSG Fockbek/Nübbel/Alt Duvenstedt | Hallennummer 140704 | Spielnummer 14548045",
     "url": "https://www.handball.net/vereine/handball4all.schleswig-holstein.6251/spielplan?dateFrom=2025-07-01&dateTo=2026-06-30&page=4",
     "color": "#16a34a"
+  },
+  {
+    "id": "blocked-140702-zumba-202512061000",
+    "title": "Belegt: Zumba",
+    "start": "2025-12-06T10:00:00+01:00",
+    "end": "2025-12-06T11:30:00+01:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
+    "color": "#2563eb"
   },
   {
     "id": "handballnet-14707080",
@@ -1272,6 +1468,20 @@
     "description": "Quelle: handball.net | HSG Fockbek/Nübbel/Alt Duvenstedt | Hallennummer 140704 | Spielnummer 14548530",
     "url": "https://www.handball.net/vereine/handball4all.schleswig-holstein.6251/spielplan?dateFrom=2025-07-01&dateTo=2026-06-30&page=4",
     "color": "#16a34a"
+  },
+  {
+    "id": "blocked-140702-zumba-202512131000",
+    "title": "Belegt: Zumba",
+    "start": "2025-12-13T10:00:00+01:00",
+    "end": "2025-12-13T11:30:00+01:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
+    "color": "#2563eb"
   },
   {
     "id": "handballnet-14707036",
@@ -1456,6 +1666,34 @@
     "color": "#16a34a"
   },
   {
+    "id": "blocked-140702-zumba-202512201000",
+    "title": "Belegt: Zumba",
+    "start": "2025-12-20T10:00:00+01:00",
+    "end": "2025-12-20T11:30:00+01:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
+    "color": "#2563eb"
+  },
+  {
+    "id": "blocked-140702-zumba-202512271000",
+    "title": "Belegt: Zumba",
+    "start": "2025-12-27T10:00:00+01:00",
+    "end": "2025-12-27T11:30:00+01:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
+    "color": "#2563eb"
+  },
+  {
     "id": "weekend-140704-kw01-2026-01-03-ssc-fockbek-bogenschiessen",
     "title": "SSC Fockbek / Bogenschiessen",
     "start": "2026-01-03T08:00:00+01:00",
@@ -1468,6 +1706,20 @@
     "description": "Quelle: data/weekend_belegung.xlsx | Blatt: KW01 | Excel-Halle: Bgm.-Schadwinkel-Halle | keine konkrete Uhrzeit in Excel gefunden",
     "url": "",
     "color": "#16a34a"
+  },
+  {
+    "id": "blocked-140702-zumba-202601031000",
+    "title": "Belegt: Zumba",
+    "start": "2026-01-03T10:00:00+01:00",
+    "end": "2026-01-03T11:30:00+01:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
+    "color": "#2563eb"
   },
   {
     "id": "weekend-140704-kw01-2026-01-04-ssc-fockbek-bogenschiessen",
@@ -1523,6 +1775,20 @@
     "location": "Sporthalle Alt Duvenstedt",
     "description": "Quelle: handball.net | HSG Fockbek/Nübbel/Alt Duvenstedt | Hallennummer 140702 | Spielnummer 14000062",
     "url": "https://www.handball.net/vereine/handball4all.schleswig-holstein.6251/spielplan?dateFrom=2025-07-01&dateTo=2026-06-30&page=5",
+    "color": "#2563eb"
+  },
+  {
+    "id": "blocked-140702-zumba-202601101000",
+    "title": "Belegt: Zumba",
+    "start": "2026-01-10T10:00:00+01:00",
+    "end": "2026-01-10T11:30:00+01:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
     "color": "#2563eb"
   },
   {
@@ -1736,6 +2002,20 @@
     "color": "#16a34a"
   },
   {
+    "id": "blocked-140702-zumba-202601171000",
+    "title": "Belegt: Zumba",
+    "start": "2026-01-17T10:00:00+01:00",
+    "end": "2026-01-17T11:30:00+01:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
+    "color": "#2563eb"
+  },
+  {
     "id": "handballnet-14712049",
     "title": "wJB-RL-1 · HSG Schülp/Westerrönfeld/Rendsburg 2",
     "start": "2026-01-17T13:00:00+01:00",
@@ -1890,6 +2170,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "blocked-140702-zumba-202601241000",
+    "title": "Belegt: Zumba",
+    "start": "2026-01-24T10:00:00+01:00",
+    "end": "2026-01-24T11:30:00+01:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
+    "color": "#2563eb"
+  },
+  {
     "id": "handballnet-14726074",
     "title": "wJC-RL-2 · MTV Schwabstedt",
     "start": "2026-01-24T13:00:00+01:00",
@@ -2016,6 +2310,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "blocked-140702-zumba-202601311000",
+    "title": "Belegt: Zumba",
+    "start": "2026-01-31T10:00:00+01:00",
+    "end": "2026-01-31T11:30:00+01:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
+    "color": "#2563eb"
+  },
+  {
     "id": "handballnet-14707051",
     "title": "mJB-RL-1 · HSG 91 Nortorf",
     "start": "2026-01-31T13:00:00+01:00",
@@ -2069,6 +2377,20 @@
     "location": "Sporthalle Alt Duvenstedt",
     "description": "Quelle: handball.net | HSG Fockbek/Nübbel/Alt Duvenstedt | Hallennummer 140702 | Spielnummer 14801021",
     "url": "https://www.handball.net/vereine/handball4all.schleswig-holstein.6251/spielplan?dateFrom=2025-07-01&dateTo=2026-06-30&page=6",
+    "color": "#2563eb"
+  },
+  {
+    "id": "blocked-140702-zumba-202602071000",
+    "title": "Belegt: Zumba",
+    "start": "2026-02-07T10:00:00+01:00",
+    "end": "2026-02-07T11:30:00+01:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
     "color": "#2563eb"
   },
   {
@@ -2198,6 +2520,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "blocked-140702-zumba-202602141000",
+    "title": "Belegt: Zumba",
+    "start": "2026-02-14T10:00:00+01:00",
+    "end": "2026-02-14T11:30:00+01:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
+    "color": "#2563eb"
+  },
+  {
     "id": "handballnet-14807351",
     "title": "2. Männer · TuS Gaarden",
     "start": "2026-02-14T17:00:00+01:00",
@@ -2238,6 +2574,20 @@
     "description": "Quelle: handball.net | HSG Fockbek/Nübbel/Alt Duvenstedt | Hallennummer 140704 | Spielnummer 14547334",
     "url": "https://www.handball.net/vereine/handball4all.schleswig-holstein.6251/spielplan?dateFrom=2025-07-01&dateTo=2026-06-30&page=7",
     "color": "#16a34a"
+  },
+  {
+    "id": "blocked-140702-zumba-202602211000",
+    "title": "Belegt: Zumba",
+    "start": "2026-02-21T10:00:00+01:00",
+    "end": "2026-02-21T11:30:00+01:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
+    "color": "#2563eb"
   },
   {
     "id": "handballnet-14726096",
@@ -2338,6 +2688,20 @@
     "color": "#16a34a"
   },
   {
+    "id": "blocked-140702-zumba-202602281000",
+    "title": "Belegt: Zumba",
+    "start": "2026-02-28T10:00:00+01:00",
+    "end": "2026-02-28T11:30:00+01:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
+    "color": "#2563eb"
+  },
+  {
     "id": "handballnet-14006813",
     "title": "mJC · HSG Kalkberg 06",
     "start": "2026-02-28T13:00:00+01:00",
@@ -2405,6 +2769,20 @@
     "location": "Sporthalle Alt Duvenstedt",
     "description": "Quelle: handball.net | HSG Fockbek/Nübbel/Alt Duvenstedt | Hallennummer 140702 | Spielnummer 14702055",
     "url": "https://www.handball.net/vereine/handball4all.schleswig-holstein.6251/spielplan?dateFrom=2025-07-01&dateTo=2026-06-30&page=7",
+    "color": "#2563eb"
+  },
+  {
+    "id": "blocked-140702-zumba-202603071000",
+    "title": "Belegt: Zumba",
+    "start": "2026-03-07T10:00:00+01:00",
+    "end": "2026-03-07T11:30:00+01:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
     "color": "#2563eb"
   },
   {
@@ -2490,6 +2868,20 @@
     "description": "Quelle: handball.net | HSG Fockbek/Nübbel/Alt Duvenstedt | Hallennummer 140717 | Spielnummer 14549117",
     "url": "https://www.handball.net/vereine/handball4all.schleswig-holstein.6251/spielplan?dateFrom=2025-07-01&dateTo=2026-06-30&page=8",
     "color": "#dc2626"
+  },
+  {
+    "id": "blocked-140702-zumba-202603141000",
+    "title": "Belegt: Zumba",
+    "start": "2026-03-14T10:00:00+01:00",
+    "end": "2026-03-14T11:30:00+01:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
+    "color": "#2563eb"
   },
   {
     "id": "handballnet-14547375",
@@ -2632,6 +3024,20 @@
     "color": "#16a34a"
   },
   {
+    "id": "blocked-140702-zumba-202603211000",
+    "title": "Belegt: Zumba",
+    "start": "2026-03-21T10:00:00+01:00",
+    "end": "2026-03-21T11:30:00+01:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
+    "color": "#2563eb"
+  },
+  {
     "id": "handballnet-14547610",
     "title": "wJD",
     "start": "2026-03-21T13:00:00+01:00",
@@ -2744,6 +3150,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "blocked-140702-zumba-202603281000",
+    "title": "Belegt: Zumba",
+    "start": "2026-03-28T10:00:00+01:00",
+    "end": "2026-03-28T11:30:00+01:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
+    "color": "#2563eb"
+  },
+  {
     "id": "weekend-140704-kw14-2026-04-03-karfreitag-vergabe-nur-gemeinde",
     "title": "Karfreitag Vergabe nur Gemeinde",
     "start": "2026-04-03T08:00:00+02:00",
@@ -2798,6 +3218,20 @@
     "description": "Quelle: data/weekend_belegung.xlsx | Blatt: KW14 | Excel-Halle: Sporthalle Bergschule | keine konkrete Uhrzeit in Excel gefunden",
     "url": "",
     "color": "#9333ea"
+  },
+  {
+    "id": "blocked-140702-zumba-202604041000",
+    "title": "Belegt: Zumba",
+    "start": "2026-04-04T10:00:00+02:00",
+    "end": "2026-04-04T11:30:00+02:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
+    "color": "#2563eb"
   },
   {
     "id": "weekend-140704-kw14-2026-04-05-osterwochenende",
@@ -2856,6 +3290,20 @@
     "color": "#9333ea"
   },
   {
+    "id": "blocked-140702-zumba-202604111000",
+    "title": "Belegt: Zumba",
+    "start": "2026-04-11T10:00:00+02:00",
+    "end": "2026-04-11T11:30:00+02:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
+    "color": "#2563eb"
+  },
+  {
     "id": "handballnet-14000123",
     "title": "1. Frauen · HSG Kremperheide/Münsterdorf",
     "start": "2026-04-11T16:00:00+02:00",
@@ -2909,6 +3357,20 @@
     "location": "Sporthalle Alt Duvenstedt",
     "description": "Quelle: handball.net | HSG Fockbek/Nübbel/Alt Duvenstedt | Hallennummer 140702 | Spielnummer 14702064",
     "url": "https://www.handball.net/vereine/handball4all.schleswig-holstein.6251/spielplan?dateFrom=2025-07-01&dateTo=2026-06-30&page=9",
+    "color": "#2563eb"
+  },
+  {
+    "id": "blocked-140702-zumba-202604181000",
+    "title": "Belegt: Zumba",
+    "start": "2026-04-18T10:00:00+02:00",
+    "end": "2026-04-18T11:30:00+02:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
     "color": "#2563eb"
   },
   {
@@ -3064,6 +3526,20 @@
     "description": "Quelle: handball.net | HSG Fockbek/Nübbel/Alt Duvenstedt | Hallennummer 140704 | Spielnummer 14547300",
     "url": "https://www.handball.net/vereine/handball4all.schleswig-holstein.6251/spielplan?dateFrom=2025-07-01&dateTo=2026-06-30&page=9",
     "color": "#16a34a"
+  },
+  {
+    "id": "blocked-140702-zumba-202604251000",
+    "title": "Belegt: Zumba",
+    "start": "2026-04-25T10:00:00+02:00",
+    "end": "2026-04-25T11:30:00+02:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
+    "color": "#2563eb"
   },
   {
     "id": "handballnet-14726129",
@@ -3356,6 +3832,20 @@
     "source": "trainings.csv",
     "location": "Sporthalle Alt Duvenstedt",
     "description": "optional laut Plan",
+    "url": "",
+    "color": "#2563eb"
+  },
+  {
+    "id": "blocked-140702-zumba-202605021000",
+    "title": "Belegt: Zumba",
+    "start": "2026-05-02T10:00:00+02:00",
+    "end": "2026-05-02T11:30:00+02:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
     "url": "",
     "color": "#2563eb"
   },
@@ -4410,6 +4900,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "blocked-140702-zumba-202605091000",
+    "title": "Belegt: Zumba",
+    "start": "2026-05-09T10:00:00+02:00",
+    "end": "2026-05-09T11:30:00+02:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
+    "color": "#2563eb"
+  },
+  {
     "id": "training-140702-minimini-ad-202605111500",
     "title": "Training MiniMini AD",
     "start": "2026-05-11T15:00:00+02:00",
@@ -5432,6 +5936,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "blocked-140702-zumba-202605161000",
+    "title": "Belegt: Zumba",
+    "start": "2026-05-16T10:00:00+02:00",
+    "end": "2026-05-16T11:30:00+02:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
+    "color": "#2563eb"
+  },
+  {
     "id": "training-140702-minimini-ad-202605181500",
     "title": "Training MiniMini AD",
     "start": "2026-05-18T15:00:00+02:00",
@@ -6422,6 +6940,20 @@
     "source": "trainings.csv",
     "location": "Sporthalle Alt Duvenstedt",
     "description": "optional laut Plan",
+    "url": "",
+    "color": "#2563eb"
+  },
+  {
+    "id": "blocked-140702-zumba-202605231000",
+    "title": "Belegt: Zumba",
+    "start": "2026-05-23T10:00:00+02:00",
+    "end": "2026-05-23T11:30:00+02:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
     "url": "",
     "color": "#2563eb"
   },
@@ -7462,6 +7994,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "blocked-140702-zumba-202605301000",
+    "title": "Belegt: Zumba",
+    "start": "2026-05-30T10:00:00+02:00",
+    "end": "2026-05-30T11:30:00+02:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
+    "color": "#2563eb"
+  },
+  {
     "id": "training-140702-minimini-ad-202606011500",
     "title": "Training MiniMini AD",
     "start": "2026-06-01T15:00:00+02:00",
@@ -8452,6 +8998,20 @@
     "source": "trainings.csv",
     "location": "Sporthalle Alt Duvenstedt",
     "description": "optional laut Plan",
+    "url": "",
+    "color": "#2563eb"
+  },
+  {
+    "id": "blocked-140702-zumba-202606061000",
+    "title": "Belegt: Zumba",
+    "start": "2026-06-06T10:00:00+02:00",
+    "end": "2026-06-06T11:30:00+02:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
     "url": "",
     "color": "#2563eb"
   },
@@ -9450,6 +10010,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "blocked-140702-zumba-202606131000",
+    "title": "Belegt: Zumba",
+    "start": "2026-06-13T10:00:00+02:00",
+    "end": "2026-06-13T11:30:00+02:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
+    "color": "#2563eb"
+  },
+  {
     "id": "training-140702-minimini-ad-202606151500",
     "title": "Training MiniMini AD",
     "start": "2026-06-15T15:00:00+02:00",
@@ -10444,6 +11018,20 @@
     "color": "#2563eb"
   },
   {
+    "id": "blocked-140702-zumba-202606201000",
+    "title": "Belegt: Zumba",
+    "start": "2026-06-20T10:00:00+02:00",
+    "end": "2026-06-20T11:30:00+02:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
+    "url": "",
+    "color": "#2563eb"
+  },
+  {
     "id": "training-140702-minimini-ad-202606221500",
     "title": "Training MiniMini AD",
     "start": "2026-06-22T15:00:00+02:00",
@@ -11434,6 +12022,20 @@
     "source": "trainings.csv",
     "location": "Sporthalle Alt Duvenstedt",
     "description": "optional laut Plan",
+    "url": "",
+    "color": "#2563eb"
+  },
+  {
+    "id": "blocked-140702-zumba-202606271000",
+    "title": "Belegt: Zumba",
+    "start": "2026-06-27T10:00:00+02:00",
+    "end": "2026-06-27T11:30:00+02:00",
+    "hall_id": "140702",
+    "hall": "Sporthalle Alt Duvenstedt",
+    "type": "blocked",
+    "source": "trainings.csv",
+    "location": "Sporthalle Alt Duvenstedt",
+    "description": "Zumba Samstag",
     "url": "",
     "color": "#2563eb"
   },

@@ -32,14 +32,17 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
   function typeLabel(type) {
-    const labels = {
-      game: 'Spiele',
-      training: 'Training',
-      blocked: 'Belegt',
-      football: 'Fußballerzeit',
-      optional: 'Optional'
-    };
-
+   const labels = {
+  game: 'Spiele',
+  training: 'Training',
+  blocked: 'Belegt',
+  football: 'Fußballerzeit',
+  optional: 'Optional',
+  weekend: 'Wochenendbelegung',
+  event: 'Zusatztermine',
+  camp: 'Trainingslager',
+  tournament: 'Turnier'
+};
     return labels[type] || type;
   }
 

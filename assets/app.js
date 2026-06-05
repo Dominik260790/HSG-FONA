@@ -197,15 +197,14 @@ document.addEventListener('DOMContentLoaded', async function () {
     return rawEvents
       .filter(e => selectedHalls.includes(e.hall_id))
       .filter(e => selectedTypes.includes(e.type))
-      .map(e => ({
-        id: e.id,
-        title: e.title + ' · ' + e.hall,
-        start: e.start,
-        end: e.end,
-        color: e.color || undefined,
-        url: e.url || undefined,
-        extendedProps: e
-      }));
+     .map(e => ({
+  id: e.id,
+  title: e.title + ' · ' + e.hall,
+  start: e.start,
+  end: e.end,
+  color: e.color || undefined,
+  extendedProps: e
+}));
   }
 
   buildControls();
@@ -225,18 +224,19 @@ document.addEventListener('DOMContentLoaded', async function () {
       right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
     },
     events: filteredEvents(),
-    eventClick: function(info) {
-      const e = info.event.extendedProps;
+   eventClick: function(info) {
+  info.jsEvent.preventDefault();
 
-      alert([
-        info.event.title,
-        'Halle: ' + e.hall,
-        'Typ: ' + e.type,
-        e.description ? 'Info: ' + e.description : '',
-        e.url ? 'Quelle: ' + e.url : ''
-      ].filter(Boolean).join('\n'));
-    }
-  });
+  const e = info.event.extendedProps;
+
+  alert([
+    info.event.title,
+    'Halle: ' + e.hall,
+    'Typ: ' + e.type,
+    e.description ? 'Info: ' + e.description : '',
+    e.url ? 'Quelle: ' + e.url : ''
+  ].filter(Boolean).join('\n'));
+}
 
   calendar.render();
 

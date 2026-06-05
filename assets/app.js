@@ -32,17 +32,18 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
   function typeLabel(type) {
-   const labels = {
-  game: 'Spiele',
-  training: 'Training',
-  blocked: 'Belegt',
-  football: 'Fußballerzeit',
-  optional: 'Optional',
-  weekend: 'Wochenendbelegung',
-  event: 'Zusatztermine',
-  camp: 'Trainingslager',
-  tournament: 'Turnier'
-};
+    const labels = {
+      game: 'Spiele',
+      training: 'Training',
+      blocked: 'Belegt',
+      football: 'Fußballerzeit',
+      optional: 'Optional',
+      weekend: 'Wochenendbelegung',
+      event: 'Zusatztermine',
+      camp: 'Trainingslager',
+      tournament: 'Turnier'
+    };
+
     return labels[type] || type;
   }
 
@@ -197,14 +198,14 @@ document.addEventListener('DOMContentLoaded', async function () {
     return rawEvents
       .filter(e => selectedHalls.includes(e.hall_id))
       .filter(e => selectedTypes.includes(e.type))
-     .map(e => ({
-  id: e.id,
-  title: e.title + ' · ' + e.hall,
-  start: e.start,
-  end: e.end,
-  color: e.color || undefined,
-  extendedProps: e
-}));
+      .map(e => ({
+        id: e.id,
+        title: e.title + ' · ' + e.hall,
+        start: e.start,
+        end: e.end,
+        color: e.color || undefined,
+        extendedProps: e
+      }));
   }
 
   buildControls();
@@ -224,19 +225,20 @@ document.addEventListener('DOMContentLoaded', async function () {
       right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
     },
     events: filteredEvents(),
-   eventClick: function(info) {
-  info.jsEvent.preventDefault();
+    eventClick: function(info) {
+      info.jsEvent.preventDefault();
 
-  const e = info.event.extendedProps;
+      const e = info.event.extendedProps;
 
-  alert([
-    info.event.title,
-    'Halle: ' + e.hall,
-    'Typ: ' + e.type,
-    e.description ? 'Info: ' + e.description : '',
-    e.url ? 'Quelle: ' + e.url : ''
-  ].filter(Boolean).join('\n'));
-}
+      alert([
+        info.event.title,
+        'Halle: ' + e.hall,
+        'Typ: ' + typeLabel(e.type),
+        e.description ? 'Info: ' + e.description : '',
+        e.url ? 'Quelle: ' + e.url : ''
+      ].filter(Boolean).join('\n'));
+    }
+  });
 
   calendar.render();
 

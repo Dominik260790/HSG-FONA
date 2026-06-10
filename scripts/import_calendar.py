@@ -441,10 +441,15 @@ def extract_game_title(block: str, start: datetime) -> str:
 
 
 def fetch_handballnet_games() -> list[CalendarEvent]:
-    base_url = (
-        f"https://www.handball.net/vereine/{CLUB_ID}/spielplan"
-        f"?dateFrom={DATE_FROM.isoformat()}&dateTo={DATE_TO.isoformat()}"
-    )
+    """Fetch handball.net games in weekly chunks.
+
+    Warum wochenweise?
+    handball.net liefert bei langen Zeiträumen nicht immer zuverlässig alle Spiele
+    auf den ersten Seiten. Durch Wochenblöcke wird z. B. auch ein spätes Quali-Spiel
+    im Juni 2026 sicherer gefunden.
+
+    Doppelte Spiele werden über die Spielnummer/Event-ID entfernt.
+    """
 
     headers = {
         "User-Agent": "Mozilla/5.0 hallenkalender-import/1.0 (+https://github.com/)",
@@ -455,96 +460,113 @@ def fetch_handballnet_games() -> list[CalendarEvent]:
     seen: set[str] = set()
 
     max_pages = 20
-    pages_without_new_events = 0
 
-    for page in range(1, max_pages + 1):
-        if page == 1:
-            url = base_url
-        else:
-            url = f"{base_url}&page={page}"
+    current = DATE_FROM
 
-        print(f"Fetching handball.net page {page}: {url}")
+    while current <= DATE_TO:
+        chunk_to = min(current + timedelta(days=6), DATE_TO)
 
-        response = requests.get(url, headers=headers, timeout=30)
-        response.raise_for_status()
+        base_url = (
+            f"https://www.handball.net/vereine/{CLUB_ID}/spielplan"
+            f"?dateFrom={current.isoformat()}&dateTo={chunk_to.isoformat()}"
+        )
 
-        soup = BeautifulSoup(response.text, "html.parser")
-        text_blocks: list[str] = []
+        print(f"handball.net Zeitraum: {current.isoformat()} bis {chunk_to.isoformat()}")
 
-        for tag in soup.find_all(["article", "section", "li", "tr", "div"]):
-            txt = clean_text(tag.get_text(" "))
+        pages_without_new_events = 0
 
-            if len(txt) < 80 or len(txt) > 2500:
-                continue
+        for page in range(1, max_pages + 1):
+            if page == 1:
+                url = base_url
+            else:
+                url = f"{base_url}&page={page}"
 
-            if "Spielbeginn" not in txt:
-                continue
+            print(f"Fetching handball.net page {page}: {url}")
 
-            if "Spielnummer" not in txt:
-                continue
+            response = requests.get(url, headers=headers, timeout=30)
+            response.raise_for_status()
 
-            if not any(hall_id in txt for hall_id in HALLS):
-                continue
+            soup = BeautifulSoup(response.text, "html.parser")
+            text_blocks: list[str] = []
 
-            text_blocks.append(txt)
+            for tag in soup.find_all(["article", "section", "li", "tr", "div"]):
+                txt = clean_text(tag.get_text(" "))
 
-        before_count = len(events)
-
-        for block in text_blocks:
-            block_without_update = re.split(r"letztes\s+Update", block, flags=re.I)[0]
-
-            for hall_id, hall in HALLS.items():
-                if hall_id not in block_without_update:
+                if len(txt) < 80 or len(txt) > 2500:
                     continue
 
-                start = parse_game_start(block_without_update)
-
-                if not start:
+                if "Spielbeginn" not in txt:
                     continue
 
-                end = start + timedelta(minutes=DEFAULT_GAME_DURATION_MINUTES)
-
-                game_no = extract_game_number(block_without_update, hall_id, start)
-                event_id = f"handballnet-{game_no}"
-
-                if event_id in seen:
+                if "Spielnummer" not in txt:
                     continue
 
-                seen.add(event_id)
+                if not any(hall_id in txt for hall_id in HALLS):
+                    continue
 
-                title = extract_game_title(block_without_update, start)
+                text_blocks.append(txt)
 
-                events.append(
-                    CalendarEvent(
-                        id=event_id,
-                        title=title,
-                        start=to_iso(start),
-                        end=to_iso(end),
-                        hall_id=hall_id,
-                        hall=hall["name"],
-                        type="game",
-                        source="handball.net",
-                        location=hall["name"],
-                        description=(
-                            f"Quelle: handball.net | {CLUB_NAME} | "
-                            f"Hallennummer {hall_id} | Spielnummer {game_no}"
-                        ),
-                        url=url,
-                        color=hall.get("color", ""),
+            before_count = len(events)
+
+            for block in text_blocks:
+                block_without_update = re.split(r"letztes\s+Update", block, flags=re.I)[0]
+
+                for hall_id, hall in HALLS.items():
+                    if hall_id not in block_without_update:
+                        continue
+
+                    start = parse_game_start(block_without_update)
+
+                    if not start:
+                        continue
+
+                    end = start + timedelta(minutes=DEFAULT_GAME_DURATION_MINUTES)
+
+                    game_no = extract_game_number(block_without_update, hall_id, start)
+                    event_id = f"handballnet-{game_no}"
+
+                    if event_id in seen:
+                        continue
+
+                    seen.add(event_id)
+
+                    title = extract_game_title(block_without_update, start)
+
+                    events.append(
+                        CalendarEvent(
+                            id=event_id,
+                            title=title,
+                            start=to_iso(start),
+                            end=to_iso(end),
+                            hall_id=hall_id,
+                            hall=hall["name"],
+                            type="game",
+                            source="handball.net",
+                            location=hall["name"],
+                            description=(
+                                f"Quelle: handball.net | {CLUB_NAME} | "
+                                f"Hallennummer {hall_id} | Spielnummer {game_no}"
+                            ),
+                            url=url,
+                            color=hall.get("color", ""),
+                        )
                     )
-                )
 
-        new_events = len(events) - before_count
-        print(f"handball.net page {page}: {new_events} new hall games")
+            new_events = len(events) - before_count
+            print(f"handball.net Zeitraum {current.isoformat()} bis {chunk_to.isoformat()}, page {page}: {new_events} new hall games")
 
-        if new_events == 0:
-            pages_without_new_events += 1
-        else:
-            pages_without_new_events = 0
+            if new_events == 0:
+                pages_without_new_events += 1
+            else:
+                pages_without_new_events = 0
 
-        if pages_without_new_events >= 4:
-            print("Stopping handball.net pagination after 4 pages without new hall games.")
-            break
+            if pages_without_new_events >= 4:
+                print("Stopping handball.net pagination after 4 pages without new hall games in this week.")
+                break
+
+        current = chunk_to + timedelta(days=1)
+
+    print(f"handball.net games gesamt nach Wochenimport: {len(events)}")
 
     return sorted(events, key=lambda e: e.start)
 

@@ -6,7 +6,7 @@ TIMEZONE = "Europe/Berlin"
 
 # Saisonzeitraum anpassen, wenn die neue Saison beginnt.
 DATE_FROM = date(2026, 4, 1)
-DATE_TO = date(2027, 05, 31)
+DATE_TO = date(2027, 5, 31)
 
 # Hallennummern aus handball.net.
 HALLS = {

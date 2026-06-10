@@ -5,8 +5,8 @@ CLUB_NAME = "HSG Fockbek/Nübbel/Alt Duvenstedt"
 TIMEZONE = "Europe/Berlin"
 
 # Saisonzeitraum anpassen, wenn die neue Saison beginnt.
-DATE_FROM = date(2025, 7, 1)
-DATE_TO = date(2099, 12, 31)
+DATE_FROM = date(2026, 4, 1)
+DATE_TO = date(2027, 05, 31)
 
 # Hallennummern aus handball.net.
 HALLS = {

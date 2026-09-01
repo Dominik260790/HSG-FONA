@@ -20,6 +20,7 @@ except ImportError:
 
 from config import (
     CLUB_ID,
+    HANDBALLNET_CLUB_SLUG,
     CLUB_NAME,
     TIMEZONE,
     DATE_FROM,

@@ -1,52 +1,37 @@
-name: Update hall calendar
+import csv
+import hashlib
+import io
+import json
+import re
+import zipfile
+import xml.etree.ElementTree as ET
 
-on:
-  workflow_dispatch:
-  schedule:
-    - cron: "15 5 * * *"
-  push:
-    branches:
-      - main
+from collections import Counter
+from dataclasses import asdict, dataclass
+from datetime import date, datetime, time, timedelta, timezone
+from pathlib import Path
+from typing import Optional
 
-permissions:
-  contents: write
-  pages: write
-  id-token: write
+import requests
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+try:
+    from openpyxl import load_workbook
+except ImportError:
+    load_workbook = None
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Install dependencies
-        run: |
-          if [ -f requirements.txt ]; then
-            pip install -r requirements.txt
-          fi
-
-      - name: Generate calendar files
-        run: python scripts/import_calendar.py
-
-      - name: Commit generated calendar files
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "Update generated calendar files"
-          file_pattern: |
-            data/events.json
-            calendars/*.ics
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: .
-
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+from config import (
+    CLUB_NAME,
+    TIMEZONE,
+    DATE_FROM,
+    DATE_TO,
+    HALLS,
+    DEFAULT_GAME_DURATION_MINUTES,
+    TRAINING_CSV,
+    MISQUAD_XLSX,
+    MISQUAD_HALL_MAP,
+    WEEKEND_XLSX,
+    WEEKEND_HALL_MAP,
+    EXTRA_EVENTS_CSV_URL,
+    EXTRA_HALL_MAP,
+    EXTRA_TYPE_MAP,
+)

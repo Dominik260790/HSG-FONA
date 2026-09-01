@@ -2,14 +2,13 @@ name: Update hall calendar
 
 on:
   workflow_dispatch:
+
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: "15 5 * * *"
+
   push:
     branches:
       - main
-
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 permissions:
   contents: read
@@ -24,6 +23,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -36,9 +39,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then
-            pip install -r requirements.txt
-          fi
+          pip install -r requirements.txt
 
       - name: Check Python syntax
         run: |
@@ -49,9 +50,10 @@ jobs:
         run: python scripts/import_calendar.py
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: .
 
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+        id: deployment
+        uses: actions/deploy-pages@v5

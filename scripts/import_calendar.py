@@ -466,10 +466,16 @@ def fetch_handballnet_games() -> list[CalendarEvent]:
     while current <= DATE_TO:
         chunk_to = min(current + timedelta(days=6), DATE_TO)
 
-        base_url = (
-            f"https://www.handball.net/vereine/{CLUB_ID}/spielplan"
-            f"?dateFrom={current.isoformat()}&dateTo={chunk_to.isoformat()}"
-        )
+        candidate_base_urls = [
+    (
+        f"https://www.handball.net/vereine/{CLUB_ID}/spielplan"
+        f"?dateFrom={current.isoformat()}&dateTo={chunk_to.isoformat()}"
+    ),
+    (
+        f"https://handball.net/club/{HANDBALLNET_CLUB_SLUG}"
+        f"?dateFrom={current.isoformat()}&dateTo={chunk_to.isoformat()}"
+    ),
+]
 
         print(f"handball.net Zeitraum: {current.isoformat()} bis {chunk_to.isoformat()}")
 

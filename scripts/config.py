@@ -1,6 +1,7 @@
 from datetime import date
 
 CLUB_ID = "handball4all.schleswig-holstein.6251"
+HANDBALLNET_CLUB_SLUG = "1sz55yy"
 CLUB_NAME = "HSG Fockbek/Nübbel/Alt Duvenstedt"
 TIMEZONE = "Europe/Berlin"
 

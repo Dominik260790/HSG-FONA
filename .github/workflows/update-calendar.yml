@@ -1,37 +1,59 @@
-import csv
-import hashlib
-import io
-import json
-import re
-import zipfile
-import xml.etree.ElementTree as ET
+name: Update hall calendar
 
-from collections import Counter
-from dataclasses import asdict, dataclass
-from datetime import date, datetime, time, timedelta, timezone
-from pathlib import Path
-from typing import Optional
+on:
+  workflow_dispatch:
 
-import requests
+  schedule:
+    - cron: "15 5 * * *"
 
-try:
-    from openpyxl import load_workbook
-except ImportError:
-    load_workbook = None
+  push:
+    branches:
+      - main
 
-from config import (
-    CLUB_NAME,
-    TIMEZONE,
-    DATE_FROM,
-    DATE_TO,
-    HALLS,
-    DEFAULT_GAME_DURATION_MINUTES,
-    TRAINING_CSV,
-    MISQUAD_XLSX,
-    MISQUAD_HALL_MAP,
-    WEEKEND_XLSX,
-    WEEKEND_HALL_MAP,
-    EXTRA_EVENTS_CSV_URL,
-    EXTRA_HALL_MAP,
-    EXTRA_TYPE_MAP,
-)
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Check Python syntax
+        run: |
+          python -m py_compile scripts/config.py
+          python -m py_compile scripts/import_calendar.py
+
+      - name: Generate calendar files
+        run: python scripts/import_calendar.py
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

@@ -1,44 +1,89 @@
 from datetime import date
 
-CLUB_ID = "handball4all.schleswig-holstein.6251"
-HANDBALLNET_CLUB_SLUG = "1sz55yy"
+
 CLUB_NAME = "HSG Fockbek/Nübbel/Alt Duvenstedt"
 TIMEZONE = "Europe/Berlin"
 
-# Saisonzeitraum anpassen, wenn die neue Saison beginnt.
+
+# Zeitraum, der im Hallenkalender berücksichtigt wird.
+# Bei einer neuen Saison hier entsprechend anpassen.
 DATE_FROM = date(2026, 4, 1)
 DATE_TO = date(2027, 5, 31)
 
-# Hallennummern aus handball.net.
+
+# Unsere Hallen
 HALLS = {
     "140702": {
         "name": "Sporthalle Alt Duvenstedt",
         "slug": "alt-duvenstedt",
         "color": "#2563eb",
     },
+
     "140704": {
         "name": "BSH Fockbek",
         "slug": "bsh",
         "color": "#16a34a",
     },
+
     "140717": {
-        "name": "Sporthalle Nuebbel",
+        "name": "Sporthalle Nübbel",
         "slug": "nuebbel",
         "color": "#dc2626",
     },
-     "140703": {
+
+    "140703": {
         "name": "Realschule Fockbek",
         "slug": "realschule",
-         "color": "#9333ea",
+        "color": "#9333ea",
     },
-        
-    # Beispiele ergänzen:
-    # "140704": {"name": "Sporthalle Fockbek", "slug": "fockbek", "color": "#16a34a"},
-    # "140705": {"name": "Sporthalle Nübbel", "slug": "nuebbel", "color": "#dc2626"},
 }
 
+
+# Standarddauer eines Spiels
 DEFAULT_GAME_DURATION_MINUTES = 90
+
+
+# ---------------------------------------------------------
+# TRAININGSPLAN
+# ---------------------------------------------------------
+
 TRAINING_CSV = "data/trainings.csv"
+
+
+# ---------------------------------------------------------
+# MISQUAD
+# ---------------------------------------------------------
+
+# Die jeweils aktuelle MISQUAD-Datei muss im Repository
+# immer unter diesem Namen liegen:
+MISQUAD_XLSX = "data/misquad.xlsx"
+
+
+# Zuordnung der Hallennamen aus MISQUAD
+#
+# WICHTIG:
+# "SPORTHALLE" bedeutet bei HSG-Heimspielen Sporthalle Nübbel.
+# Der Import berücksichtigt hierfür ausschließlich Heimspiele
+# der HSG.
+MISQUAD_HALL_MAP = {
+    "SPORTHALLE ALT DUVENSTEDT": "140702",
+
+    "BÜRGERMEISTER-SCHADWINKEL-HALLE": "140704",
+
+    "SPORTHALLE": "140717",
+    "SPORTHALLE NÜBBEL": "140717",
+    "SPORTHALLE NUEBBEL": "140717",
+
+    # vorsorglich für zukünftige MISQUAD-Bezeichnungen
+    "REALSCHULE FOCKBEK": "140703",
+    "SPORTHALLE BERGSCHULE": "140703",
+}
+
+
+# ---------------------------------------------------------
+# WOCHENENDBELEGUNG
+# ---------------------------------------------------------
+
 WEEKEND_XLSX = "data/weekend_belegung.xlsx"
 
 WEEKEND_HALL_MAP = {
@@ -47,7 +92,17 @@ WEEKEND_HALL_MAP = {
     "Sporthalle Nübbel": "140717",
     "Sporthalle Bergschule": "140703",
 }
-EXTRA_EVENTS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQDHmRhn3c3B1ozudVJ3BL7zHvACLcVfG9pcz_s6JpQXgyxShNGSAq4xYAjrCDFoguM03-VBjaXl3gh/pub?output=csv"
+
+
+# ---------------------------------------------------------
+# GOOGLE FORM / ZUSATZTERMINE
+# ---------------------------------------------------------
+
+EXTRA_EVENTS_CSV_URL = (
+    "https://docs.google.com/spreadsheets/d/e/"
+    "2PACX-1vQDHmRhn3c3B1ozudVJ3BL7zHvACLcVfG9pcz_s6JpQXgyxShNGSAq4xYAjrCDFoguM03-VBjaXl3gh/"
+    "pub?output=csv"
+)
 
 
 EXTRA_HALL_MAP = {
@@ -66,6 +121,7 @@ EXTRA_HALL_MAP = {
     "Nübbel": "140717",
     "Nuebbel": "140717",
 }
+
 
 EXTRA_TYPE_MAP = {
     "Zusatztermin": "event",
